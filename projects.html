@@ -11,11 +11,21 @@
         tailwind.config = {
             theme: { extend: {
                 colors:{ netbg:'#141414', netcard:'#181818', netred:'#E50914' },
-                fontFamily:{ sans:['Inter','sans-serif'], heading:['Bebas Neue','sans-serif'] }
+                fontFamily:{ sans:['Freesia', 'Inter', 'sans-serif'], heading:['Bebas Neue','sans-serif'] }
             }}
         }
     </script>
     <style>
+        /* ── นำเข้าฟอนต์ Freesia (ต้องมีไฟล์ Freesia.ttf หรือ .woff2 ในโฟลเดอร์เดียวกับเว็บ) ── */
+        @font-face {
+            font-family: 'Freesia';
+            src: url('Freesia.woff2') format('woff2'),
+                 url('Freesia.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         *{box-sizing:border-box}
         body{background:#141414;color:#E5E5E5;overflow-x:hidden;padding-bottom:0}
         @media(max-width:767px){body{padding-bottom:70px}}
@@ -205,26 +215,35 @@
                 <span class="glitch-nav font-heading text-4xl md:text-5xl tracking-wider text-netred drop-shadow-md" data-text="CATAWUT">CATAWUT</span>
             </a>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html#about"   class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors">About</a>
-                <a href="index.html#journey" class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors">Journey</a>
-                <a href="index.html#skills"  class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors">Skills</a>
-                <a href="projects.html"      class="nav-link active-page text-white font-medium text-sm">Projects</a>
-                <a href="index.html#contact" class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors">Contact</a>
+                <a href="index.html#about"   class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors" data-en="About" data-th="เกี่ยวกับฉัน">About</a>
+                <a href="index.html#journey" class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors" data-en="Journey" data-th="การเดินทาง">Journey</a>
+                <a href="index.html#skills"  class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors" data-en="Skills" data-th="ทักษะ">Skills</a>
+                <a href="projects.html"      class="nav-link active-page text-white font-medium text-sm" data-en="Projects" data-th="โปรเจกต์">Projects</a>
+                <a href="index.html#contact" class="nav-link text-gray-300 hover:text-white font-medium text-sm transition-colors" data-en="Contact" data-th="ติดต่อ">Contact</a>
+                
+                <!-- Desktop Language Toggle -->
+                <button onclick="toggleLanguage()" class="lang-btn ml-2 px-2.5 py-1 text-[11px] font-bold border border-gray-600 rounded text-gray-400 hover:text-white hover:border-gray-400 transition-colors">TH</button>
             </div>
-            <a href="index.html" class="md:hidden flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium">
-                <i class="fas fa-arrow-left text-netred text-xs"></i> Portfolio
-            </a>
+            
+            <div class="md:hidden flex items-center gap-4">
+                <a href="index.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium">
+                    <i class="fas fa-arrow-left text-netred text-xs"></i> <span data-en="Portfolio" data-th="พอร์ตฟอลิโอ">Portfolio</span>
+                </a>
+                <!-- Mobile Language Toggle -->
+                <button onclick="toggleLanguage()" class="lang-btn px-2.5 py-1 text-[11px] font-bold border border-gray-600 rounded text-gray-400 hover:text-white hover:border-gray-400 transition-colors">TH</button>
+            </div>
         </div>
     </div>
 </nav>
 
 <!-- ─── Bottom Nav (Mobile) ─── -->
 <nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#141414]/95 backdrop-blur-lg border-t border-gray-800 flex justify-around items-center py-2 shadow-[0_-10px_20px_rgba(0,0,0,.5)]">
-    <a href="index.html#about"   class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
-    <a href="index.html#journey" class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-play-circle text-xl mb-1"></i><span class="text-[10px]">Journey</span></a>
-    <a href="projects.html"      class="bottom-nav-link active flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-folder-open text-xl mb-1"></i><span class="text-[10px]">Projects</span></a>
-    <a href="index.html#skills"  class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-layer-group text-xl mb-1"></i><span class="text-[10px]">Skills</span></a>
-    <a href="index.html#contact" class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-user-circle text-xl mb-1"></i><span class="text-[10px]">Contact</span></a>
+    <!-- แก้ไข Links ให้ชี้ไปหน้า index.html ให้ถูกต้อง -->
+    <a href="index.html" class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]" data-en="Home" data-th="หน้าแรก">Home</span></a>
+    <a href="index.html#journey" class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-play-circle text-xl mb-1"></i><span class="text-[10px]" data-en="Journey" data-th="เส้นทาง">Journey</span></a>
+    <a href="projects.html" class="bottom-nav-link active flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-folder-open text-xl mb-1"></i><span class="text-[10px]" data-en="Projects" data-th="โปรเจกต์">Projects</span></a>
+    <a href="index.html#skills" class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-layer-group text-xl mb-1"></i><span class="text-[10px]" data-en="Skills" data-th="ทักษะ">Skills</span></a>
+    <a href="index.html#contact" class="bottom-nav-link flex flex-col items-center text-gray-500 w-14 pt-1"><i class="fas fa-user-circle text-xl mb-1"></i><span class="text-[10px]" data-en="Contact" data-th="ติดต่อ">Contact</span></a>
 </nav>
 
 <!-- ─── Hero ─── -->
@@ -233,142 +252,28 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="fade-up-1 inline-flex items-center gap-2 px-3 py-1 bg-netcard border border-gray-800 rounded-sm text-gray-400 font-bold text-[10px] tracking-widest uppercase mb-5">
             <span class="count-badge inline-flex w-5 h-5 rounded-sm bg-netred items-center justify-center text-white font-bold text-[10px]">3</span>
-            SELECTED PROJECTS
+            <span data-en="SELECTED PROJECTS" data-th="โปรเจกต์ที่คัดสรรแล้ว">SELECTED PROJECTS</span>
         </div>
-        <h1 class="fade-up-2 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading text-white leading-none mb-5 drop-shadow-lg">
+        <h1 class="fade-up-2 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading text-white leading-none mb-5 drop-shadow-lg" data-en="PROJECTS &amp;<br/><span class='text-netred'>RESEARCH</span>" data-th="โปรเจกต์ &amp;<br/><span class='text-netred'>งานวิจัย</span>">
             PROJECTS &amp;<br/><span class="text-netred">RESEARCH</span>
         </h1>
-        <p class="fade-up-3 text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
+        <p class="fade-up-3 text-gray-400 text-base md:text-lg max-w-xl leading-relaxed" data-en="Academic research and engineering innovations — click any card to explore details." data-th="รวบรวมงานวิจัยทางวิชาการและนวัตกรรมทางวิศวกรรม — คลิกที่การ์ดเพื่อดูรายละเอียดทั้งหมด">
             Academic research and engineering innovations — click any card to explore details.
         </p>
     </div>
 </section>
 
-<!-- ─── Cards Grid ─── -->
+<!-- ─── Cards Grid (Rendered by JS to support Multi-language) ─── -->
 <section class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-
-        <!-- Card 01 -->
-        <div class="project-card" data-accent="blue" onclick="openProject('1')">
-            <div class="card-shine"></div>
-            <div class="icon-zone" style="background:linear-gradient(160deg,rgba(59,130,246,.08) 0%,transparent 100%)">
-                <div class="icon-zone-bg" style="background:radial-gradient(circle at 50% 60%,rgba(59,130,246,.12),transparent 70%)"></div>
-                <div class="ring ring-1" style="width:160px;height:160px;border-color:rgba(59,130,246,.08)"></div>
-                <div class="ring ring-2" style="width:110px;height:110px;border-color:rgba(59,130,246,.12)"></div>
-                <div class="icon-box" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)">
-                    <i class="fas fa-walking" style="font-size:2.6rem;color:#60a5fa"></i>
-                </div>
-            </div>
-            <div class="content-zone">
-                <div class="flex items-start justify-between mb-3">
-                    <span class="font-heading text-5xl leading-none" style="color:rgba(59,130,246,.15)">01</span>
-                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);color:#60a5fa">
-                        <i class="fas fa-graduation-cap" style="font-size:8px"></i> Thesis
-                    </span>
-                </div>
-                <h3 class="font-heading text-[1.7rem] md:text-[2rem] leading-tight text-white mb-1">Footpath Quality Index</h3>
-                <p class="text-gray-500 text-xs mb-4">Bangkok, Thailand · Chulalongkorn University</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                    <span class="stat-chip">234 Respondents</span>
-                    <span class="stat-chip">2 BTS Stations</span>
-                    <span class="stat-chip">800 m Radius</span>
-                </div>
-                <div class="flex flex-wrap gap-1.5 mb-5">
-                    <span class="tag-chip">Research</span>
-                    <span class="tag-chip">Urban Planning</span>
-                    <span class="tag-chip">CFA & Logistic Reg.</span>
-                    <span class="tag-chip">RStudio</span>
-                </div>
-                <div class="cta-row" style="color:#60a5fa">
-                    <span>Explore Project</span>
-                    <i class="fas fa-arrow-right cta-arrow-icon" style="font-size:11px"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 02 -->
-        <div class="project-card" data-accent="yellow" onclick="openProject('2')">
-            <div class="card-shine"></div>
-            <div class="icon-zone" style="background:linear-gradient(160deg,rgba(234,179,8,.08) 0%,transparent 100%)">
-                <div class="icon-zone-bg" style="background:radial-gradient(circle at 50% 60%,rgba(234,179,8,.12),transparent 70%)"></div>
-                <div class="ring ring-1" style="width:160px;height:160px;border-color:rgba(234,179,8,.08)"></div>
-                <div class="ring ring-2" style="width:110px;height:110px;border-color:rgba(234,179,8,.12)"></div>
-                <div class="icon-box" style="background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.2)">
-                    <i class="fas fa-flask" style="font-size:2.6rem;color:#fbbf24"></i>
-                </div>
-            </div>
-            <div class="content-zone">
-                <div class="flex items-start justify-between mb-3">
-                    <span class="font-heading text-5xl leading-none" style="color:rgba(234,179,8,.15)">02</span>
-                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase" style="background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.3);color:#fbbf24">
-                        <i class="fas fa-medal" style="font-size:8px"></i> Gold Prize · SIIF Seoul
-                    </span>
-                </div>
-                <h3 class="font-heading text-[1.7rem] md:text-[2rem] leading-tight text-white mb-1">Anion Surfactant<br/>Reduction Machine</h3>
-                <p class="text-gray-500 text-xs mb-4">Seoul International Invention Fair · Engineering Innovation</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                    <span class="stat-chip">0.154 → 0.049</span>
-                    <span class="stat-chip">68% Reduction</span>
-                    <span class="stat-chip">3 Treatment Steps</span>
-                </div>
-                <div class="flex flex-wrap gap-1.5 mb-5">
-                    <span class="tag-chip">Wastewater Treatment</span>
-                    <span class="tag-chip">Machine Design</span>
-                    <span class="tag-chip">Arduino</span>
-                    <span class="tag-chip">Spectrophotometry</span>
-                </div>
-                <div class="cta-row" style="color:#fbbf24">
-                    <span>Explore Project</span>
-                    <i class="fas fa-arrow-right cta-arrow-icon" style="font-size:11px"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 03 -->
-        <div class="project-card" data-accent="green" onclick="openProject('3')">
-            <div class="card-shine"></div>
-            <div class="icon-zone" style="background:linear-gradient(160deg,rgba(34,197,94,.08) 0%,transparent 100%)">
-                <div class="icon-zone-bg" style="background:radial-gradient(circle at 50% 60%,rgba(34,197,94,.12),transparent 70%)"></div>
-                <div class="ring ring-1" style="width:160px;height:160px;border-color:rgba(34,197,94,.08)"></div>
-                <div class="ring ring-2" style="width:110px;height:110px;border-color:rgba(34,197,94,.12)"></div>
-                <div class="icon-box" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)">
-                    <i class="fas fa-seedling" style="font-size:2.6rem;color:#4ade80"></i>
-                </div>
-            </div>
-            <div class="content-zone">
-                <div class="flex items-start justify-between mb-3">
-                    <span class="font-heading text-5xl leading-none" style="color:rgba(34,197,94,.15)">03</span>
-                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80">
-                        <i class="fas fa-award" style="font-size:8px"></i> 1st Runner-up · YSC
-                    </span>
-                </div>
-                <h3 class="font-heading text-[1.7rem] md:text-[2rem] leading-tight text-white mb-1">Wood Replacement<br/>from Bagasse</h3>
-                <p class="text-gray-500 text-xs mb-4">Young Scientist Competition · Sustainable Materials</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                    <span class="stat-chip">3 Main Materials</span>
-                    <span class="stat-chip">15g Optimal Silica</span>
-                    <span class="stat-chip">6+ Tests</span>
-                </div>
-                <div class="flex flex-wrap gap-1.5 mb-5">
-                    <span class="tag-chip">Sustainable Innovation</span>
-                    <span class="tag-chip">Material Science</span>
-                    <span class="tag-chip">Lab Testing</span>
-                    <span class="tag-chip">Circular Economy</span>
-                </div>
-                <div class="cta-row" style="color:#4ade80">
-                    <span>Explore Project</span>
-                    <i class="fas fa-arrow-right cta-arrow-icon" style="font-size:11px"></i>
-                </div>
-            </div>
-        </div>
-
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5" id="cards-grid">
+        <!-- Cards will be injected here via JavaScript -->
     </div>
 </section>
 
 <!-- ─── Footer ─── -->
 <footer class="relative z-10 border-t border-gray-800 py-10 text-center">
     <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-netcard border border-gray-700 hover:border-netred rounded text-white text-sm font-medium transition-colors">
-        <i class="fas fa-arrow-left text-netred text-xs"></i> Back to Portfolio
+        <i class="fas fa-arrow-left text-netred text-xs"></i> <span data-en="Back to Portfolio" data-th="กลับไปยังพอร์ตฟอลิโอ">Back to Portfolio</span>
     </a>
 </footer>
 
@@ -384,7 +289,7 @@
             <div id="modal-progress"></div>
             <div id="modal-breadcrumb" class="flex items-center gap-2 text-sm text-gray-500 min-w-0">
                 <i class="fas fa-folder-open text-[11px] text-gray-600"></i>
-                <span class="hidden sm:inline">Projects</span>
+                <span class="hidden sm:inline" data-en="Projects" data-th="โปรเจกต์">Projects</span>
                 <span class="hidden sm:inline text-gray-700">/</span>
                 <span id="modal-bc-title" class="text-gray-300 truncate font-medium"></span>
             </div>
@@ -398,155 +303,335 @@
 
         <!-- Scrollable body -->
         <div id="modal-body">
-            <div id="modal-content" class="max-w-5xl mx-auto px-4 sm:px-6 pb-20"></div>
+            <div id="modal-content" class="max-w-5xl mx-auto px-4 sm:px-6 pb-20 mt-2"></div>
         </div>
     </div>
 </div>
 
 <script>
 // ════════════════════════════════
-// DATA
+// LANGUAGE & DATA CONFIGURATION
 // ════════════════════════════════
+let currentLang = localStorage.getItem('siteLang') || 'en';
+
 const PROJECTS = {
   '1':{
     id:'1',prev:null,next:'2',
-    accent:'#3b82f6',accentRgb:'59,130,246',accentLight:'#60a5fa',
+    accentName:'blue', accent:'#3b82f6',accentRgb:'59,130,246',accentLight:'#60a5fa',
     icon:'fas fa-walking',number:'01',
-    badge:{icon:'fas fa-graduation-cap',label:'Thesis Research'},
-    loc:{icon:'fas fa-map-marker-alt',label:'Bangkok, Thailand'},
-    title:'Footpath Quality Index',
-    sub:'Walkability & Rail Transit Access Study · Chulalongkorn University',
-    tagline:'Investigating how sidewalk quality shapes the decision to walk to rail transit.',
-    stats:[{v:'234',l:'Respondents'},{v:'2',l:'BTS Stations'},{v:'800m',l:'Study Radius'}],
-    tags:['Research','Urban Planning','CFA','Logistic Regression','RStudio'],
-    overviewLabel:'Overview',
-    overview:'Research project investigating how footpath quality influences people\'s decision to walk to rail transit stations in Bangkok. The study focused on two areas within an 800-meter radius of <strong class="text-white">BTS Sala Daeng</strong> and <strong class="text-white">BTS Chit Lom</strong>, where pedestrian conditions were evaluated using the Pedestrian Environment Quality Index (PEQI). Field surveys and questionnaire data from 234 respondents were collected to compare physical sidewalk quality, travel behavior, and user perceptions across different urban contexts.',
-    sections:[
-      {label:'Methodology',icon:'fas fa-search',items:[
-        'Evaluated pedestrian conditions using the <strong class="text-gray-200">PEQI</strong> across both BTS study areas',
-        'Conducted field surveys and collected questionnaire data from <strong class="text-gray-200">234 respondents</strong>',
-        'Compared physical sidewalk quality, travel behavior, and user perceptions across urban contexts',
-      ]},
-      {label:'Data Analysis',icon:'fas fa-chart-bar',items:[
-        'Used <strong class="text-gray-200">RStudio</strong> for data preparation, descriptive analysis, CFA, and Logistic Regression',
-        'Identified key walking-behavior factors: footpath quality, comfort, travel cost, time pressure, and environment',
-        'Developed practical recommendations to improve walkability and support transit-oriented urban development',
-      ]},
-    ],
-    findingAccent:'#3b82f6',findingIcon:'fas fa-lightbulb',findingLabel:'Key Finding',
-    finding:'Better sidewalk conditions strongly increase the likelihood of walking to transit, while poor comfort and time constraints reduce it — supporting policy investment in pedestrian infrastructure near rail stations.',
+    imgUrl: 'project_chula.jpg', // 🟢 รูปภาพ 1
+    en: {
+        badgeIcon:'fas fa-graduation-cap', badgeLabel:'Thesis Research',
+        locIcon:'fas fa-map-marker-alt', locLabel:'Bangkok, Thailand',
+        title:'Footpath Quality Index',
+        sub:'Walkability & Rail Transit Access Study',
+        tagline:'Investigating how sidewalk quality shapes the decision to walk to rail transit.',
+        stats:[{v:'234',l:'Respondents'},{v:'2',l:'BTS Stations'},{v:'800m',l:'Study Radius'}],
+        tags:['Research','Urban Planning','CFA','Logistic Regression','RStudio'],
+        overviewLabel:'Overview',
+        overview:'Research project investigating how footpath quality influences people\'s decision to walk to rail transit stations in Bangkok. The study focused on two areas within an 800-meter radius of <strong class="text-white">BTS Sala Daeng</strong> and <strong class="text-white">BTS Chit Lom</strong>, where pedestrian conditions were evaluated using the Pedestrian Environment Quality Index (PEQI). Field surveys and questionnaire data from 234 respondents were collected to compare physical sidewalk quality, travel behavior, and user perceptions across different urban contexts.',
+        sections:[
+          {label:'Methodology',icon:'fas fa-search',items:[
+            'Evaluated pedestrian conditions using the <strong class="text-gray-200">PEQI</strong> across both BTS study areas',
+            'Conducted field surveys and collected questionnaire data from <strong class="text-gray-200">234 respondents</strong>',
+            'Compared physical sidewalk quality, travel behavior, and user perceptions across urban contexts'
+          ]},
+          {label:'Data Analysis',icon:'fas fa-chart-bar',items:[
+            'Used <strong class="text-gray-200">RStudio</strong> for data preparation, descriptive analysis, CFA, and Logistic Regression',
+            'Identified key walking-behavior factors: footpath quality, comfort, travel cost, time pressure, and environment',
+            'Developed practical recommendations to improve walkability and support transit-oriented urban development'
+          ]},
+        ],
+        findingLabel:'Key Finding',
+        finding:'Better sidewalk conditions strongly increase the likelihood of walking to transit, while poor comfort and time constraints reduce it — supporting policy investment in pedestrian infrastructure near rail stations.',
+        imgIcon:'fas fa-map-marked-alt', imgCaption:'Add Field Survey / Study Area Map', imgSub:'Fieldwork photos, PEQI evaluation maps, or survey visuals',
+        skillsLabel: 'Skills Built', toolsLabel: 'Tools', exploreLabel: 'Explore Project',
+        prevLabel: 'Prev', nextLabel: 'Next', projLabel: 'Project'
+    },
+    th: {
+        badgeIcon:'fas fa-graduation-cap', badgeLabel:'วิทยานิพนธ์',
+        locIcon:'fas fa-map-marker-alt', locLabel:'กรุงเทพมหานคร, ประเทศไทย',
+        title:'ดัชนีคุณภาพทางเท้า (PEQI)',
+        sub:'การศึกษาความน่าเดินและการเข้าถึงระบบขนส่งมวลชนทางราง',
+        tagline:'ศึกษาว่าคุณภาพทางเท้ามีอิทธิพลต่อการตัดสินใจเดินไปยังสถานีรถไฟฟ้าอย่างไร',
+        stats:[{v:'234',l:'ผู้ตอบแบบสอบถาม'},{v:'2',l:'สถานี BTS'},{v:'800m',l:'รัศมีการศึกษา'}],
+        tags:['งานวิจัย','การผังเมือง','CFA','Logistic Regression','RStudio'],
+        overviewLabel:'ภาพรวมโครงการ',
+        overview:'โครงการวิจัยที่ศึกษาว่าคุณภาพของทางเท้ามีอิทธิพลต่อการตัดสินใจในการเดินไปยังสถานีรถไฟฟ้าในกรุงเทพฯ อย่างไร การศึกษาเจาะจงพื้นที่ภายในรัศมี 800 เมตรของ <strong class="text-white">BTS ศาลาแดง</strong> และ <strong class="text-white">BTS ชิดลม</strong> โดยใช้ตัวชี้วัดคุณภาพทางเท้า (PEQI) ร่วมกับการลงพื้นที่สำรวจและเก็บข้อมูลจากกลุ่มตัวอย่างจำนวน 234 คน เพื่อเปรียบเทียบคุณภาพทางกายภาพ พฤติกรรมการเดินทาง และมุมมองของผู้ใช้งาน',
+        sections:[
+          {label:'ระเบียบวิธีวิจัย',icon:'fas fa-search',items:[
+            'ประเมินสภาพทางเท้าโดยใช้ดัชนี <strong class="text-gray-200">PEQI</strong> ในพื้นที่ศึกษาสถานี BTS ทั้ง 2 แห่ง',
+            'ลงพื้นที่สำรวจและเก็บข้อมูลแบบสอบถามจากกลุ่มตัวอย่าง <strong class="text-gray-200">234 คน</strong>',
+            'เปรียบเทียบคุณภาพทางเท้าทางกายภาพ พฤติกรรมการเดินทาง และมุมมองในบริบทเมืองที่ต่างกัน'
+          ]},
+          {label:'การวิเคราะห์ข้อมูล',icon:'fas fa-chart-bar',items:[
+            'ใช้ <strong class="text-gray-200">RStudio</strong> ในการเตรียมข้อมูล, วิเคราะห์เชิงพรรณนา, CFA และ Logistic Regression',
+            'ระบุปัจจัยสำคัญต่อพฤติกรรมการเดิน: คุณภาพทางเท้า, ความสะดวกสบาย, ค่าเดินทาง, เวลา และสภาพแวดล้อม',
+            'พัฒนาข้อเสนอแนะเชิงปฏิบัติเพื่อสนับสนุนการพัฒนาโครงสร้างพื้นฐานสำหรับคนเดินเท้า'
+          ]},
+        ],
+        findingLabel:'ข้อค้นพบสำคัญ',
+        finding:'สภาพทางเท้าที่ดีขึ้นจะเพิ่มแนวโน้มในการตัดสินใจเดินไปยังสถานีรถไฟฟ้าอย่างมาก ในขณะที่ความไม่สะดวกสบายและข้อจำกัดด้านเวลาจะบั่นทอนความต้องการเดิน ซึ่งข้อมูลนี้สนับสนุนให้ภาครัฐควรลงทุนในโครงสร้างพื้นฐานสำหรับคนเดินเท้าใกล้สถานีขนส่ง',
+        imgIcon:'fas fa-map-marked-alt', imgCaption:'ใส่รูปแผนที่พื้นที่ศึกษา / การสำรวจ', imgSub:'ภาพถ่ายการลงพื้นที่, แผนที่ประเมิน PEQI หรือภาพรวมการสำรวจ',
+        skillsLabel: 'ทักษะที่ได้รับ', toolsLabel: 'เครื่องมือที่ใช้', exploreLabel: 'ดูรายละเอียด',
+        prevLabel: 'ก่อนหน้า', nextLabel: 'ถัดไป', projLabel: 'โปรเจกต์'
+    },
     skills:[],
-    tools:[{i:'fab fa-google',l:'Google Forms'},{i:'fas fa-map',l:'Google Maps'},{i:'fas fa-chart-line',l:'RStudio'},{i:'fas fa-file-excel',l:'Excel'}],
-    imgIcon:'fas fa-map-marked-alt',imgCaption:'Add Field Survey / Study Area Map',imgSub:'Fieldwork photos, PEQI evaluation maps, or survey visuals',
-    imgUrl: 'project_chula.jpg', // 🟢 ตำแหน่งใส่รูปภาพ Project 01 (ใส่ URL รูปภาพระหว่างเครื่องหมาย '')
+    tools:[{i:'fab fa-google',l:'Google Forms'},{i:'fas fa-map',l:'Google Maps'},{i:'fas fa-chart-line',l:'RStudio'},{i:'fas fa-file-excel',l:'Excel'}]
   },
   '2':{
     id:'2',prev:'1',next:'3',
-    accent:'#f59e0b',accentRgb:'234,179,8',accentLight:'#fbbf24',
+    accentName:'yellow', accent:'#f59e0b',accentRgb:'234,179,8',accentLight:'#fbbf24',
     icon:'fas fa-flask',number:'02',
-    badge:{icon:'fas fa-medal',label:'Gold Prize · SIIF Seoul'},
-    loc:{icon:'fas fa-flask',label:'Engineering Innovation'},
-    title:'Anion Surfactant Reduction Machine',
-    sub:'Wastewater Treatment System · Seoul International Invention Fair (SIIF)',
-    tagline:'Award-winning machine designed to eliminate harmful surfactants from laundry wastewater.',
-    stats:[{v:'0.154→0.049',l:'Absorbance'},{v:'68%',l:'Reduction'},{v:'3',l:'Treatment Steps'}],
-    tags:['Machine Design','Wastewater Treatment','Arduino','Spectrophotometry','Gold Prize'],
-    overviewLabel:'Problem',
-    overview:'Laundry wastewater contains high levels of <strong class="text-white">anion surfactants</strong> with hydrocarbon side chains that prevent oxygen from dissolving in water, directly harming aquatic ecosystems. The goal was to design and build an effective multi-step treatment machine to reduce surfactant levels before environmental discharge.',
-    sections:[
-      {label:'System Design',icon:'fas fa-wrench',items:[
-        '<strong class="text-gray-200">Multi-step Treatment:</strong> Integrated mechanical pumps, mixing tanks, and filtration units working in sequence',
-        '<strong class="text-gray-200">Chemical Treatment:</strong> Mixing tank with CaCl₂ dropper; natural pressed cattail flower sheets on mixing blades absorb non-polar residues',
-        '<strong class="text-gray-200">Advanced Filtration:</strong> Final unit with manganese greensand and activated carbon to adsorb remaining heavy metal ions',
-      ]},
-      {label:'Key Achievements',icon:'fas fa-trophy',items:[
-        'Successfully reduced oil stains, waste residues, and anion surfactant levels in treated wastewater',
-        'Improved overall wastewater quality to meet standards for safe environmental discharge',
-        '<strong class="text-gray-200">Spectrophotometer Verified:</strong> Absorbance dropped from <strong class="text-yellow-300">0.154 → 0.049</strong> — a reduction of over 68%',
-      ]},
-    ],
-    findingAccent:'#f59e0b',findingIcon:'fas fa-vial',findingLabel:'Data-Driven Proof',
-    finding:'Quantitative testing via spectrophotometer confirmed absorbance dropped from 0.154 (pre-treatment) to 0.049 (post-treatment) — over 68% reduction, proving the system\'s real-world effectiveness.',
+    imgUrl: 'project_korea.jpg', // 🟢 รูปภาพ 2
+    en: {
+        badgeIcon:'fas fa-medal', badgeLabel:'Gold Prize · SIIF Seoul',
+        locIcon:'fas fa-flask', locLabel:'Engineering Innovation',
+        title:'Anion Surfactant Reduction Machine',
+        sub:'Wastewater Treatment System · Seoul International Invention Fair (SIIF)',
+        tagline:'Award-winning machine designed to eliminate harmful surfactants from laundry wastewater.',
+        stats:[{v:'0.154→0.049',l:'Absorbance'},{v:'68%',l:'Reduction'},{v:'3',l:'Treatment Steps'}],
+        tags:['Machine Design','Wastewater Treatment','Arduino','Spectrophotometry','Gold Prize'],
+        overviewLabel:'Problem',
+        overview:'Laundry wastewater contains high levels of <strong class="text-white">anion surfactants</strong> with hydrocarbon side chains that prevent oxygen from dissolving in water, directly harming aquatic ecosystems. The goal was to design and build an effective multi-step treatment machine to reduce surfactant levels before environmental discharge.',
+        sections:[
+          {label:'System Design',icon:'fas fa-wrench',items:[
+            '<strong class="text-gray-200">Multi-step Treatment:</strong> Integrated mechanical pumps, mixing tanks, and filtration units working in sequence',
+            '<strong class="text-gray-200">Chemical Treatment:</strong> Mixing tank with CaCl₂ dropper; natural pressed cattail flower sheets on mixing blades absorb non-polar residues',
+            '<strong class="text-gray-200">Advanced Filtration:</strong> Final unit with manganese greensand and activated carbon to adsorb remaining heavy metal ions',
+          ]},
+          {label:'Key Achievements',icon:'fas fa-trophy',items:[
+            'Successfully reduced oil stains, waste residues, and anion surfactant levels in treated wastewater',
+            'Improved overall wastewater quality to meet standards for safe environmental discharge',
+            '<strong class="text-gray-200">Spectrophotometer Verified:</strong> Absorbance dropped from <strong class="text-yellow-300">0.154 → 0.049</strong> — a reduction of over 68%',
+          ]},
+        ],
+        findingLabel:'Data-Driven Proof',
+        finding:'Quantitative testing via spectrophotometer confirmed absorbance dropped from 0.154 (pre-treatment) to 0.049 (post-treatment) — over 68% reduction, proving the system\'s real-world effectiveness.',
+        imgIcon:'fas fa-cogs', imgCaption:'Add Machine / System Image', imgSub:'Machine prototype, system design diagram, or lab photos',
+        skillsLabel: 'Skills Built', toolsLabel: 'Tools', exploreLabel: 'Explore Project',
+        prevLabel: 'Prev', nextLabel: 'Next', projLabel: 'Project'
+    },
+    th: {
+        badgeIcon:'fas fa-medal', badgeLabel:'เหรียญทอง · SIIF โซล',
+        locIcon:'fas fa-flask', locLabel:'นวัตกรรมวิศวกรรม',
+        title:'เครื่องลดสารลดแรงตึงผิวแอนไอออน',
+        sub:'ระบบบำบัดน้ำเสีย · นิทรรศการสิ่งประดิษฐ์นานาชาติ กรุงโซล (SIIF)',
+        tagline:'เครื่องจักรประดิษฐ์รางวัลเหรียญทอง ที่ออกแบบมาเพื่อบำบัดสารเคมีอันตรายจากน้ำเสียการซักล้าง',
+        stats:[{v:'0.154→0.049',l:'ค่าการดูดกลืนแสง'},{v:'68%',l:'ลดลงได้'},{v:'3',l:'ขั้นตอนบำบัด'}],
+        tags:['การออกแบบเครื่องจักร','การบำบัดน้ำเสีย','Arduino','Spectrophotometry','รางวัลเหรียญทอง'],
+        overviewLabel:'ปัญหา & ที่มา',
+        overview:'น้ำเสียจากการซักรีดมักมีสารเคมีกลุ่ม <strong class="text-white">สารลดแรงตึงผิวแอนไอออน</strong> ในปริมาณสูง ซึ่งมีโซ่ไฮโดรคาร์บอนที่กั้นไม่ให้ออกซิเจนละลายลงในแหล่งน้ำ ส่งผลเสียโดยตรงต่อระบบนิเวศทางน้ำ เป้าหมายของโครงงานนี้คือการออกแบบและสร้างเครื่องจักรบำบัดน้ำเสียแบบหลายขั้นตอน เพื่อกำจัดสารเหล่านี้ก่อนปล่อยทิ้ง',
+        sections:[
+          {label:'การออกแบบระบบ',icon:'fas fa-wrench',items:[
+            '<strong class="text-gray-200">การบำบัดหลายขั้นตอน:</strong> บูรณาการการทำงานของปั๊มน้ำ, ถังผสมสารเคมี และชุดกรองน้ำให้ทำงานต่อเนื่องกัน',
+            '<strong class="text-gray-200">การบำบัดทางเคมี:</strong> ใช้ถังผสมพร้อมหลอดหยด CaCl₂ และบุแผ่นดอกธูปฤาษีธรรมชาติที่ใบพัดเพื่อช่วยดูดซับสารตกค้างที่ไม่มีขั้ว',
+            '<strong class="text-gray-200">การกรองขั้นสูง:</strong> ชุดกรองน้ำขั้นสุดท้ายประกอบด้วยทรายแมงกานีสและถ่านกัมมันต์ เพื่อช่วยดูดซับโลหะหนัก'
+          ]},
+          {label:'ความสำเร็จที่สำคัญ',icon:'fas fa-trophy',items:[
+            'ประสบความสำเร็จในการลดคราบน้ำมัน, ของเสียตกค้าง และปริมาณสารลดแรงตึงผิวแอนไอออนในน้ำเสีย',
+            'ยกระดับคุณภาพน้ำเสียให้ผ่านเกณฑ์มาตรฐานความปลอดภัยก่อนปล่อยลงสู่สิ่งแวดล้อม',
+            '<strong class="text-gray-200">ยืนยันผลทดสอบด้วย Spectrophotometer:</strong> ค่าการดูดกลืนแสงลดลงจาก <strong class="text-yellow-300">0.154 → 0.049</strong> (ลดลงกว่า 68%)'
+          ]},
+        ],
+        findingLabel:'ข้อพิสูจน์ทางข้อมูล',
+        finding:'การทดสอบเชิงปริมาณด้วยเครื่องสเปกโตรโฟโตมิเตอร์ ยืนยันว่าค่าการดูดกลืนแสงลดลงจาก 0.154 (ก่อนการบำบัด) เหลือเพียง 0.049 (หลังการบำบัด) ซึ่งคิดเป็นการลดลงมากกว่า 68% เป็นบทพิสูจน์ถึงประสิทธิภาพที่ยอดเยี่ยมของระบบเมื่อนำไปใช้งานจริง',
+        imgIcon:'fas fa-cogs', imgCaption:'ใส่รูปภาพเครื่องจักร / การออกแบบ', imgSub:'รูปต้นแบบเครื่องจักร, ไดอะแกรมระบบ หรือภาพในห้องปฏิบัติการ',
+        skillsLabel: 'ทักษะที่ได้รับ', toolsLabel: 'เครื่องมือที่ใช้', exploreLabel: 'ดูรายละเอียด',
+        prevLabel: 'ก่อนหน้า', nextLabel: 'ถัดไป', projLabel: 'โปรเจกต์'
+    },
     skills:[],
-    tools:[{i:'fas fa-microchip',l:'Arduino Board'},{i:'fas fa-file-excel',l:'Excel'},{i:'fas fa-book',l:'Research'}],
-    imgIcon:'fas fa-cogs',imgCaption:'Add Machine / System Image',imgSub:'Machine prototype, system design diagram, or lab photos',
-    imgUrl: 'project_korea.jpg', // 🟢 ตำแหน่งใส่รูปภาพ Project 02 (ใส่ URL รูปภาพระหว่างเครื่องหมาย '')
+    tools:[{i:'fas fa-microchip',l:'Arduino Board'},{i:'fas fa-file-excel',l:'Excel'},{i:'fas fa-book',l:'Research'}]
   },
   '3':{
     id:'3',prev:'2',next:null,
-    accent:'#22c55e',accentRgb:'34,197,94',accentLight:'#4ade80',
+    accentName:'green', accent:'#22c55e',accentRgb:'34,197,94',accentLight:'#4ade80',
     icon:'fas fa-seedling',number:'03',
-    badge:{icon:'fas fa-award',label:'1st Runner-up · YSC'},
-    loc:{icon:'fas fa-leaf',label:'Sustainable Materials'},
-    title:'Wood Replacement Material from Bagasse',
-    sub:'Using Natural Rubber & Silica · Young Scientist Competition (YSC)',
-    tagline:'Transforming agricultural waste into a high-performance, eco-friendly construction material.',
-    stats:[{v:'3',l:'Main Materials'},{v:'15g',l:'Optimal Silica'},{v:'6+',l:'Tests Conducted'}],
-    tags:['Material Science','Sustainable Innovation','Lab Testing','Circular Economy'],
-    overviewLabel:'Overview',
-    overview:'Developed a <strong class="text-white">bio-based wood replacement material</strong> using sugarcane bagasse, natural rubber, and silica. The goal was to improve the performance of wood-substitute boards by increasing strength, reducing swelling, and exploring potential for construction and insulation applications. Work included preparing bagasse fibers, studying silica extraction, measuring dry rubber content, formulating composite mixtures, and producing test boards through molding, hydraulic pressing, and controlled drying.',
-    sections:[
-      {label:'Development Process',icon:'fas fa-flask',items:[
-        'Prepared bagasse fibers, studied silica extraction from bagasse ash, and formulated composite mixtures',
-        'Produced test boards through <strong class="text-gray-200">molding, hydraulic pressing, and controlled drying</strong>',
-        '<strong class="text-gray-200">Problem-solving:</strong> When silica extraction failed, adapted the workflow using commercial-grade silica to continue the study',
-      ]},
-      {label:'Testing & Results',icon:'fas fa-vial',items:[
-        'Equipment: hot plate stirrer, electrical furnace, hydraulic press, torsion testing machine, Universal Testing Machine (WDW-100)',
-        'Evaluated density, water swelling, bending, torsion, tensile performance, and thermal insulation across multiple formulations',
-        '<strong class="text-gray-200">15g silica</strong> gave best mechanical performance; <strong class="text-gray-200">0g silica</strong> provided best thermal insulation',
-      ]},
-    ],
-    findingAccent:'#22c55e',findingIcon:'fas fa-leaf',findingLabel:'Sustainability Impact',
-    finding:'Demonstrates the ability to transform agricultural waste (sugarcane bagasse) into a value-added engineering material — supporting circular economy principles and sustainable construction innovation.',
+    imgUrl: 'project_ysc.jpg', // 🟢 รูปภาพ 3
+    en: {
+        badgeIcon:'fas fa-award', badgeLabel:'1st Runner-up · YSC',
+        locIcon:'fas fa-leaf', locLabel:'Sustainable Materials',
+        title:'Wood Replacement from Bagasse',
+        sub:'Using Natural Rubber & Silica · Young Scientist Competition (YSC)',
+        tagline:'Transforming agricultural waste into a high-performance, eco-friendly construction material.',
+        stats:[{v:'3',l:'Main Materials'},{v:'15g',l:'Optimal Silica'},{v:'6+',l:'Tests Conducted'}],
+        tags:['Material Science','Sustainable Innovation','Lab Testing','Circular Economy'],
+        overviewLabel:'Overview',
+        overview:'Developed a <strong class="text-white">bio-based wood replacement material</strong> using sugarcane bagasse, natural rubber, and silica. The goal was to improve the performance of wood-substitute boards by increasing strength, reducing swelling, and exploring potential for construction and insulation applications. Work included preparing bagasse fibers, studying silica extraction, measuring dry rubber content, formulating composite mixtures, and producing test boards through molding, hydraulic pressing, and controlled drying.',
+        sections:[
+          {label:'Development Process',icon:'fas fa-flask',items:[
+            'Prepared bagasse fibers, studied silica extraction from bagasse ash, and formulated composite mixtures',
+            'Produced test boards through <strong class="text-gray-200">molding, hydraulic pressing, and controlled drying</strong>',
+            '<strong class="text-gray-200">Problem-solving:</strong> When silica extraction failed, adapted the workflow using commercial-grade silica to continue the study',
+          ]},
+          {label:'Testing & Results',icon:'fas fa-vial',items:[
+            'Equipment: hot plate stirrer, electrical furnace, hydraulic press, torsion testing machine, Universal Testing Machine (WDW-100)',
+            'Evaluated density, water swelling, bending, torsion, tensile performance, and thermal insulation across multiple formulations',
+            '<strong class="text-gray-200">15g silica</strong> gave best mechanical performance; <strong class="text-gray-200">0g silica</strong> provided best thermal insulation',
+          ]},
+        ],
+        findingLabel:'Sustainability Impact',
+        finding:'Demonstrates the ability to transform agricultural waste (sugarcane bagasse) into a value-added engineering material — supporting circular economy principles and sustainable construction innovation.',
+        imgIcon:'fas fa-seedling', imgCaption:'Add Material Sample / Testing Image', imgSub:'Product photos, mechanical test data, or award certificate',
+        skillsLabel: 'Skills Built', toolsLabel: 'Tools', exploreLabel: 'Explore Project',
+        prevLabel: 'Prev', nextLabel: 'Next', projLabel: 'Project'
+    },
+    th: {
+        badgeIcon:'fas fa-award', badgeLabel:'รองชนะเลิศอันดับ 1 · YSC',
+        locIcon:'fas fa-leaf', locLabel:'วัสดุเพื่อความยั่งยืน',
+        title:'วัสดุทดแทนไม้จากชานอ้อย',
+        sub:'โดยใช้ยางธรรมชาติและซิลิกา · การประกวดโครงงานวิทยาศาสตร์รุ่นเยาว์ (YSC)',
+        tagline:'การเปลี่ยนวัสดุเหลือทิ้งทางการเกษตรให้เป็นวัสดุก่อสร้างและฉนวนที่เป็นมิตรต่อสิ่งแวดล้อม',
+        stats:[{v:'3',l:'วัสดุหลัก'},{v:'15g',l:'ซิลิกาที่เหมาะสมที่สุด'},{v:'6+',l:'การทดสอบ'}],
+        tags:['วัสดุศาสตร์','นวัตกรรมยั่งยืน','การทดสอบในห้องแล็บ','เศรษฐกิจหมุนเวียน'],
+        overviewLabel:'ภาพรวมโครงการ',
+        overview:'พัฒนา <strong class="text-white">แผ่นวัสดุทดแทนไม้ฐานชีวภาพ</strong> โดยใช้ส่วนผสมของชานอ้อย, ยางพาราธรรมชาติ และซิลิกา เป้าหมายคือการเพิ่มศักยภาพเชิงกลของแผ่นไม้เทียมโดยเพิ่มความแข็งแรง ลดการบวมน้ำ และศึกษาความเป็นไปได้ในการใช้งานเป็นวัสดุก่อสร้างและฉนวนกันความร้อน กระบวนการทั้งหมดครอบคลุมตั้งแต่การเตรียมเส้นใย, การหาเปอร์เซ็นต์เนื้อยางแห้ง, การผสมสูตรคอมโพสิต และการขึ้นรูปแผ่นทดสอบด้วยเครื่องอัดไฮดรอลิก',
+        sections:[
+          {label:'กระบวนการพัฒนา',icon:'fas fa-flask',items:[
+            'เตรียมเส้นใยชานอ้อย, ศึกษาวิธีการสกัดซิลิกาจากเถ้าชานอ้อย และออกแบบสูตรส่วนผสมคอมโพสิต',
+            'สร้างแผ่นทดสอบผ่าน <strong class="text-gray-200">การขึ้นรูปแม่พิมพ์, การอัดด้วยความดันไฮดรอลิก และการอบแห้ง</strong>',
+            '<strong class="text-gray-200">การแก้ปัญหา:</strong> เมื่อการสกัดซิลิกาในขั้นแรกไม่สำเร็จ ได้ปรับแผนโดยใช้ซิลิกาเกรดอุตสาหกรรมทดแทนเพื่อให้งานวิจัยเดินหน้าต่อได้'
+          ]},
+          {label:'การทดสอบ & ผลลัพธ์',icon:'fas fa-vial',items:[
+            'ใช้อุปกรณ์ทดสอบระดับสูง: เตาเผาไฟฟ้า, เครื่องอัดไฮดรอลิก, เครื่องทดสอบแรงบิด และ Universal Testing Machine',
+            'ประเมินความหนาแน่น, การพองตัวเมื่อแช่น้ำ, การดัดงอ, แรงดึง, แรงบิด และความสามารถในการเป็นฉนวนกันความร้อน',
+            '<strong class="text-gray-200">สูตรเติมซิลิกา 15g</strong> ให้คุณสมบัติทางกลที่แข็งแรงที่สุด ในขณะที่ <strong class="text-gray-200">สูตร 0g</strong> ให้คุณสมบัติความเป็นฉนวนกันความร้อนดีที่สุด'
+          ]},
+        ],
+        findingLabel:'ผลกระทบด้านความยั่งยืน',
+        finding:'โครงงานนี้แสดงให้เห็นถึงความสามารถในการยกระดับวัสดุเหลือทิ้งทางการเกษตร (ชานอ้อย) ให้กลายเป็นวัสดุทางวิศวกรรมที่มีมูลค่าเพิ่ม ซึ่งสะท้อนหลักการทำงานตามแนวคิดเศรษฐกิจหมุนเวียน (Circular Economy) ได้อย่างเป็นรูปธรรม',
+        imgIcon:'fas fa-seedling', imgCaption:'ใส่รูปภาพตัวอย่างแผ่นวัสดุ / การทดสอบ', imgSub:'รูปภาพชิ้นงานทดสอบ, ผลการทดสอบทางกล หรือใบรับรองรางวัล',
+        skillsLabel: 'ทักษะที่ได้รับ', toolsLabel: 'เครื่องมือที่ใช้', exploreLabel: 'ดูรายละเอียด',
+        prevLabel: 'ก่อนหน้า', nextLabel: 'ถัดไป', projLabel: 'โปรเจกต์'
+    },
     skills:['Material Development','Experimental Design','Lab Testing','Data Interpretation','Project Management','Sustainable Innovation'],
-    tools:[{i:'fas fa-book',l:'Research'},{i:'fas fa-file-excel',l:'Excel'}],
-    imgIcon:'fas fa-seedling',imgCaption:'Add Material Sample / Testing Image',imgSub:'Product photos, mechanical test data, or award certificate',
-    imgUrl: 'project_ysc.jpg', // 🟢 ตำแหน่งใส่รูปภาพ Project 03 (ใส่ URL รูปภาพระหว่างเครื่องหมาย '')
+    tools:[{i:'fas fa-book',l:'Research'},{i:'fas fa-file-excel',l:'Excel'}]
   },
 };
 
 let currentId = null;
 
 // ════════════════════════════════
-// OPEN / CLOSE
+// LANGUAGE TOGGLE SYSTEM
+// ════════════════════════════════
+function toggleLanguage() {
+    currentLang = currentLang === 'en' ? 'th' : 'en';
+    localStorage.setItem('siteLang', currentLang);
+    updateLanguageUI(false);
+}
+
+function updateLanguageUI(isFirstRender = false) {
+    // 1. Update Lang buttons text
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.textContent = currentLang === 'en' ? 'TH' : 'EN';
+    });
+    
+    // 2. Update static HTML translations
+    document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+    });
+    
+    // 3. Re-render cards
+    renderCards(isFirstRender);
+    
+    // 4. Update modal text if it's currently open
+    if (currentId && document.getElementById('proj-modal').classList.contains('open')) {
+        const p = PROJECTS[currentId];
+        document.getElementById('modal-bc-title').textContent = p[currentLang].title;
+        document.getElementById('modal-content').innerHTML = buildContent(p);
+        document.querySelectorAll('.m-item').forEach(el => el.classList.add('visible')); // Force show instantly
+    }
+}
+
+// ════════════════════════════════
+// RENDER CARDS
+// ════════════════════════════════
+function renderCards(isFirstRender) {
+    const grid = document.getElementById('cards-grid');
+    grid.innerHTML = Object.values(PROJECTS).map((p, i) => {
+        const data = p[currentLang];
+        // Style animation for first render only
+        const animStyle = isFirstRender ? `opacity:0; transform:translateY(55px) scale(.95); transition: opacity .75s cubic-bezier(.16,1,.3,1) ${150 + i * 110}ms, transform .75s cubic-bezier(.16,1,.3,1) ${150 + i * 110}ms;` : '';
+        const initClass = isFirstRender ? 'card-anim-init' : '';
+        
+        return `
+        <div class="project-card ${initClass}" style="${animStyle}" data-accent="${p.accentName}" onclick="openProject('${p.id}')">
+            <div class="card-shine"></div>
+            <div class="icon-zone" style="background:linear-gradient(160deg,rgba(${p.accentRgb},.08) 0%,transparent 100%)">
+                <div class="icon-zone-bg" style="background:radial-gradient(circle at 50% 60%,rgba(${p.accentRgb},.12),transparent 70%)"></div>
+                <div class="ring ring-1" style="width:160px;height:160px;border-color:rgba(${p.accentRgb},.08)"></div>
+                <div class="ring ring-2" style="width:110px;height:110px;border-color:rgba(${p.accentRgb},.12)"></div>
+                <div class="icon-box" style="background:rgba(${p.accentRgb},.1);border:1px solid rgba(${p.accentRgb},.2)">
+                    <i class="${p.icon}" style="font-size:2.6rem;color:${p.accentLight}"></i>
+                </div>
+            </div>
+            <div class="content-zone">
+                <div class="flex items-start justify-between mb-3">
+                    <span class="font-heading text-5xl leading-none" style="color:rgba(${p.accentRgb},.15)">${p.number}</span>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase" style="background:rgba(${p.accentRgb},.1);border:1px solid rgba(${p.accentRgb},.25);color:${p.accentLight}">
+                        <i class="${data.badgeIcon}" style="font-size:8px"></i> ${data.badgeLabel}
+                    </span>
+                </div>
+                <h3 class="font-heading text-[1.7rem] md:text-[2rem] leading-tight text-white mb-1">${data.title}</h3>
+                <p class="text-gray-500 text-xs mb-4">${data.sub}</p>
+                <div class="flex flex-wrap gap-1.5 mb-3">
+                    ${data.stats.map(s => `<span class="stat-chip">${s.v} ${s.l}</span>`).join('')}
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                    ${data.tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}
+                </div>
+                <div class="cta-row" style="color:${p.accentLight}">
+                    <span>${data.exploreLabel}</span>
+                    <i class="fas fa-arrow-right cta-arrow-icon" style="font-size:11px"></i>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    bindCardEvents();
+
+    if (isFirstRender) {
+        // Trigger animations
+        setTimeout(() => {
+            document.querySelectorAll('.card-anim-init').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0) scale(1)';
+                setTimeout(() => { el.style.transition=''; el.style.transform=''; el.classList.remove('card-anim-init'); }, 1000);
+            });
+        }, 50);
+    }
+}
+
+// ════════════════════════════════
+// OPEN / CLOSE MODAL
 // ════════════════════════════════
 function openProject(id) {
     currentId = id;
     const p = PROJECTS[id];
     if (!p) return;
 
-    // Populate
-    document.getElementById('modal-bc-title').textContent = p.title;
+    document.getElementById('modal-bc-title').textContent = p[currentLang].title;
     document.getElementById('modal-progress').style.background = `linear-gradient(90deg, ${p.accent}, ${p.accentLight})`;
     document.getElementById('modal-progress').style.width = '0%';
 
-    // Prev / Next buttons
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-    btnPrev.disabled = !p.prev;
-    btnNext.disabled = !p.next;
+    document.getElementById('btn-prev').disabled = !p.prev;
+    document.getElementById('btn-next').disabled = !p.next;
 
-    // Render content
     document.getElementById('modal-content').innerHTML = buildContent(p);
 
-    // Show modal
     const modal = document.getElementById('proj-modal');
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 
-    // Reset scroll
     const body = document.getElementById('modal-body');
     body.scrollTop = 0;
 
-    // Stagger content items
     const items = document.querySelectorAll('.m-item');
     items.forEach((el, i) => {
         el.style.transitionDelay = (i * 70) + 'ms';
         setTimeout(() => el.classList.add('visible'), 80 + i * 70);
     });
 
-    // Progress on modal scroll
     body.onscroll = () => {
         const pct = body.scrollTop / (body.scrollHeight - body.clientHeight) * 100;
         document.getElementById('modal-progress').style.width = pct + '%';
@@ -557,7 +642,6 @@ function closeProject() {
     const modal = document.getElementById('proj-modal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
-    // Reset items opacity for next open
     setTimeout(() => {
         document.querySelectorAll('.m-item').forEach(el => {
             el.classList.remove('visible');
@@ -571,7 +655,6 @@ function navigateProject(dir) {
     const nextId = dir === -1 ? p.prev : p.next;
     if (!nextId) return;
 
-    // Slide content out, then in
     const content = document.getElementById('modal-content');
     const body = document.getElementById('modal-body');
     content.style.transition = 'opacity .2s ease, transform .2s ease';
@@ -581,7 +664,7 @@ function navigateProject(dir) {
     setTimeout(() => {
         currentId = nextId;
         const np = PROJECTS[nextId];
-        document.getElementById('modal-bc-title').textContent = np.title;
+        document.getElementById('modal-bc-title').textContent = np[currentLang].title;
         document.getElementById('modal-progress').style.background = `linear-gradient(90deg, ${np.accent}, ${np.accentLight})`;
         document.getElementById('btn-prev').disabled = !np.prev;
         document.getElementById('btn-next').disabled = !np.next;
@@ -611,18 +694,20 @@ function navigateProject(dir) {
 }
 
 // ════════════════════════════════
-// BUILD HTML
+// BUILD HTML FOR MODAL
 // ════════════════════════════════
 function buildContent(p) {
-    const statsH = p.stats.map(s => `
+    const data = p[currentLang];
+
+    const statsH = data.stats.map(s => `
         <div class="s-shine bg-black/40 border border-gray-800 rounded-lg p-3 md:p-4">
             <div class="font-heading text-xl md:text-2xl leading-tight" style="color:${p.accentLight}">${s.v}</div>
             <div class="text-[11px] text-gray-400 uppercase mt-1 leading-tight">${s.l}</div>
         </div>`).join('');
 
-    const tagsH = p.tags.map(t => `<span class="px-2.5 py-1 bg-white/[.04] border border-gray-800 rounded-full text-gray-400 text-xs">${t}</span>`).join('');
+    const tagsH = data.tags.map(t => `<span class="px-2.5 py-1 bg-white/[.04] border border-gray-800 rounded-full text-gray-400 text-xs">${t}</span>`).join('');
 
-    const secH = p.sections.map(s => `
+    const secH = data.sections.map(s => `
         <div class="m-item">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md mb-3 bg-white/[.03] border border-gray-800">
                 <i class="${s.icon} text-gray-400 text-xs"></i>
@@ -630,8 +715,8 @@ function buildContent(p) {
             </div>
             <ul class="space-y-2.5">
                 ${s.items.map(item => `
-                    <li class="flex items-start gap-2 text-sm text-gray-400">
-                        <i class="fas fa-play text-netred text-[9px] mt-1 shrink-0" style="color:#E50914"></i>
+                    <li class="flex items-start gap-2 text-sm text-gray-400 leading-relaxed">
+                        <i class="fas fa-play text-netred text-[9px] mt-1.5 shrink-0" style="color:#E50914"></i>
                         <span>${item}</span>
                     </li>`).join('')}
             </ul>
@@ -639,7 +724,7 @@ function buildContent(p) {
 
     const skillsH = p.skills.length ? `
         <div class="m-item bg-black/30 border border-gray-800 rounded-xl p-4 mt-4">
-            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-2">Skills Built</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-2">${data.skillsLabel}</p>
             <div class="flex flex-wrap gap-1.5">
                 ${p.skills.map(s => `<span class="px-2.5 py-1 bg-white/[.04] border border-gray-700 rounded text-gray-400 text-xs">${s}</span>`).join('')}
             </div>
@@ -648,17 +733,15 @@ function buildContent(p) {
     const toolsH = p.tools.map(t => `<span class="tool-badge"><i class="${t.i} text-[10px]"></i>${t.l}</span>`).join('');
 
     const prevBtn = p.prev
-        ? `<button onclick="navigateProject(-1)" class="proj-nav-btn"><i class="fas fa-arrow-left text-xs" style="color:${p.accent}"></i><div><div class="text-[9px] text-gray-500 uppercase tracking-widest leading-none mb-0.5">Prev</div><div>Project ${PROJECTS[p.prev].number}</div></div></button>`
+        ? `<button onclick="navigateProject(-1)" class="proj-nav-btn"><i class="fas fa-arrow-left text-xs" style="color:${p.accent}"></i><div><div class="text-[9px] text-gray-500 uppercase tracking-widest leading-none mb-0.5">${data.prevLabel}</div><div>${data.projLabel} ${PROJECTS[p.prev].number}</div></div></button>`
         : `<div></div>`;
     const nextBtn = p.next
-        ? `<button onclick="navigateProject(+1)" class="proj-nav-btn flex-row-reverse ml-auto"><i class="fas fa-arrow-right text-xs" style="color:${p.accent}"></i><div class="text-right"><div class="text-[9px] text-gray-500 uppercase tracking-widest leading-none mb-0.5">Next</div><div>Project ${PROJECTS[p.next].number}</div></div></button>`
+        ? `<button onclick="navigateProject(+1)" class="proj-nav-btn flex-row-reverse ml-auto"><i class="fas fa-arrow-right text-xs" style="color:${p.accent}"></i><div class="text-right"><div class="text-[9px] text-gray-500 uppercase tracking-widest leading-none mb-0.5">${data.nextLabel}</div><div>${data.projLabel} ${PROJECTS[p.next].number}</div></div></button>`
         : `<div></div>`;
 
     return `
-    <!-- Hero header -->
     <div class="m-item relative overflow-hidden rounded-xl mb-5 mt-4" style="background:linear-gradient(160deg,rgba(${p.accentRgb},.1) 0%,rgba(20,20,20,0) 60%)">
         <div class="p-5 md:p-7 flex flex-col md:flex-row md:items-center gap-6">
-            <!-- Icon -->
             <div class="relative shrink-0 flex items-center justify-center" style="width:120px;height:120px">
                 <div class="absolute w-28 h-28 rounded-full ring-anim" style="border:1px solid rgba(${p.accentRgb},.12)"></div>
                 <div class="absolute w-20 h-20 rounded-full ring-anim-2" style="border:1px solid rgba(${p.accentRgb},.18)"></div>
@@ -666,72 +749,60 @@ function buildContent(p) {
                     <i class="${p.icon} text-3xl" style="color:${p.accentLight}"></i>
                 </div>
             </div>
-            <!-- Info -->
             <div class="flex-1 min-w-0">
                 <div class="flex flex-wrap gap-2 mb-2">
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase" style="background:rgba(${p.accentRgb},.1);border:1px solid rgba(${p.accentRgb},.3);color:${p.accentLight}">
-                        <i class="${p.badge.icon}" style="font-size:9px"></i>${p.badge.label}
+                        <i class="${data.badgeIcon}" style="font-size:9px"></i>${data.badgeLabel}
                     </span>
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase bg-white/[.04] border border-gray-700 text-gray-400">
-                        <i class="${p.loc.icon}" style="font-size:9px"></i>${p.loc.label}
+                        <i class="${data.locIcon}" style="font-size:9px"></i>${data.locLabel}
                     </span>
                 </div>
-                <h2 class="font-heading text-3xl md:text-5xl text-white leading-tight mb-1">${p.title}</h2>
-                <p class="text-gray-500 text-xs md:text-sm mb-3">${p.sub}</p>
-                <p class="text-sm italic" style="color:rgba(${p.accentRgb},.65)">"${p.tagline}"</p>
+                <h2 class="font-heading text-3xl md:text-5xl text-white leading-tight mb-1">${data.title}</h2>
+                <p class="text-gray-500 text-xs md:text-sm mb-3">${data.sub}</p>
+                <p class="text-sm italic" style="color:rgba(${p.accentRgb},.65)">"${data.tagline}"</p>
             </div>
         </div>
-        <!-- Stats row -->
         <div class="grid grid-cols-3 gap-2 px-5 md:px-7 pb-5 md:pb-7">${statsH}</div>
     </div>
 
-    <!-- Tags -->
     <div class="m-item flex flex-wrap gap-1.5 mb-5">${tagsH}</div>
 
-    <!-- Overview -->
     <div class="m-item bg-netcard border border-gray-800 rounded-xl p-5 md:p-6 mb-5">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md mb-3" style="background:rgba(${p.accentRgb},.08);border:1px solid rgba(${p.accentRgb},.2)">
             <i class="fas fa-sparkles text-xs" style="color:${p.accentLight}"></i>
-            <span class="font-bold tracking-widest uppercase text-xs" style="color:${p.accentLight}">${p.overviewLabel}</span>
+            <span class="font-bold tracking-widest uppercase text-xs" style="color:${p.accentLight}">${data.overviewLabel}</span>
         </div>
-        <p class="text-gray-400 text-sm md:text-base leading-relaxed">${p.overview}</p>
+        <p class="text-gray-400 text-sm md:text-base leading-relaxed">${data.overview}</p>
     </div>
 
-    <!-- Two sections -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">${secH}</div>
 
-    <!-- Image Area -->
     <div class="m-item mb-5">
         ${p.imgUrl 
-            ? `<img src="${p.imgUrl}" alt="${p.title}" class="w-full h-auto max-h-[450px] object-cover rounded-xl border border-gray-800 shadow-lg">` 
+            ? `<img src="${p.imgUrl}" alt="${data.title}" class="w-full h-auto max-h-[450px] object-cover rounded-xl border border-gray-800 shadow-lg">` 
             : `<div class="img-ph w-full h-44 md:h-56 rounded-xl relative">
-                 <i class="${p.imgIcon} text-3xl mb-1"></i>
-                 <span class="text-sm font-semibold">${p.imgCaption}</span>
-                 <span class="text-xs text-center px-4" style="color:#2a2a2a">${p.imgSub}</span>
-                 <div class="mt-3 px-3 py-1 bg-netred/10 border border-netred/50 rounded text-netred text-[11px] font-bold tracking-wide">
-                     👉 ตำแหน่งแสดงรูปภาพ: เลื่อนไปใส่ลิงก์ในตัวแปร "imgUrl" ในโค้ด
-                 </div>
+                 <i class="${data.imgIcon} text-3xl mb-1"></i>
+                 <span class="text-sm font-semibold">${data.imgCaption}</span>
+                 <span class="text-xs text-center px-4" style="color:#2a2a2a">${data.imgSub}</span>
                </div>`
         }
     </div>
 
-    <!-- Key finding -->
-    <div class="m-item mb-5 rounded-xl p-4 md:p-5" style="background:rgba(${p.accentRgb},.06);border:1px solid rgba(${p.accentRgb},.2);border-left:3px solid ${p.findingAccent}">
+    <div class="m-item mb-5 rounded-xl p-4 md:p-5" style="background:rgba(${p.accentRgb},.06);border:1px solid rgba(${p.accentRgb},.2);border-left:3px solid ${p.accent}">
         <p class="text-sm text-gray-200 leading-relaxed">
-            <i class="${p.findingIcon} mr-2" style="color:${p.accentLight}"></i>
-            <strong style="color:${p.accentLight}">${p.findingLabel}:</strong> ${p.finding}
+            <i class="fas fa-lightbulb mr-2" style="color:${p.accentLight}"></i>
+            <strong style="color:${p.accentLight}">${data.findingLabel}:</strong> ${data.finding}
         </p>
     </div>
 
     ${skillsH}
 
-    <!-- Tools -->
     <div class="m-item flex flex-wrap gap-2 items-center pt-4 border-t border-gray-800 mb-6">
-        <span class="text-gray-500 text-[10px] uppercase tracking-widest font-semibold self-center mr-1">Tools</span>
+        <span class="text-gray-500 text-[10px] uppercase tracking-widest font-semibold self-center mr-1">${data.toolsLabel}</span>
         ${toolsH}
     </div>
 
-    <!-- Prev / Next -->
     <div class="m-item flex justify-between gap-3 pt-4 border-t border-gray-800">
         ${prevBtn}
         ${nextBtn}
@@ -739,26 +810,9 @@ function buildContent(p) {
 }
 
 // ════════════════════════════════
-// PAGE INIT
+// INIT & EVENTS
 // ════════════════════════════════
-(function(){
-    // Cursor glow
-    const glow = document.createElement('div');
-    glow.id = 'cursor-glow';
-    document.body.appendChild(glow);
-    document.addEventListener('mousemove', e => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top  = e.clientY + 'px';
-    });
-
-    // Keyboard close
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeProject();
-        if (e.key === 'ArrowLeft'  && currentId) navigateProject(-1);
-        if (e.key === 'ArrowRight' && currentId) navigateProject(+1);
-    });
-
-    // 3D tilt on cards
+function bindCardEvents() {
     document.querySelectorAll('.project-card').forEach(card => {
         let raf;
         card.addEventListener('mousemove', e => {
@@ -784,18 +838,26 @@ function buildContent(p) {
         });
         card.addEventListener('mousedown', () => { card.style.transform = 'scale(.97)'; });
     });
+}
 
-    // Stagger card entrance
-    document.querySelectorAll('.project-card').forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(55px) scale(.95)';
-        el.style.willChange = 'opacity,transform';
-        setTimeout(() => {
-            el.style.transition = 'opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0) scale(1)';
-            setTimeout(() => { el.style.transition=''; el.style.transform=''; el.style.willChange='auto'; }, 800);
-        }, 150 + i * 110);
+(function(){
+    // First load
+    updateLanguageUI(true);
+
+    // Cursor glow
+    const glow = document.createElement('div');
+    glow.id = 'cursor-glow';
+    document.body.appendChild(glow);
+    document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+    });
+
+    // Keyboard controls
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeProject();
+        if (e.key === 'ArrowLeft'  && currentId) navigateProject(-1);
+        if (e.key === 'ArrowRight' && currentId) navigateProject(+1);
     });
 })();
 </script>
