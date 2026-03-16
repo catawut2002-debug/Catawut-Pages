@@ -338,6 +338,43 @@
             52%  { transform: scaleX(1); transform-origin: right; opacity: 1; }
             100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
         }
+
+        /* ══════════ BENTO MOTION ══════════ */
+        .bento-box {
+            overflow: hidden;
+            transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease, border-color .4s ease !important;
+        }
+        .bento-box:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06);
+            position: relative; z-index: 2;
+        }
+        /* Injected mouse-tracking glow */
+        .bento-glow {
+            position: absolute; inset: 0; border-radius: inherit;
+            background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.08) 0%, transparent 55%);
+            opacity: 0; transition: opacity .4s ease;
+            pointer-events: none; z-index: 0;
+        }
+        .bento-box:hover .bento-glow { opacity: 1; }
+        /* Sweep shimmer on hover enter */
+        .bento-box::after {
+            content: '';
+            position: absolute; inset: 0; border-radius: inherit;
+            background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,.05) 50%, transparent 80%);
+            transform: translateX(-120%);
+            pointer-events: none; z-index: 1;
+        }
+        .bento-box:hover::after { animation: bentoSweep .75s ease forwards; }
+        @keyframes bentoSweep { to { transform: translateX(120%); } }
+        /* Counter number pop-in */
+        @keyframes numPop {
+            0%   { transform: scale(.72); opacity: .15; }
+            65%  { transform: scale(1.12); }
+            100% { transform: scale(1);   opacity: 1; }
+        }
+        .bento-stat-num { display: inline-block; }
+        .bento-stat-num.pop { animation: numPop .65s cubic-bezier(.16,1,.3,1) forwards; }
     </style>
 </head>
 <body class="lang-en antialiased selection:bg-netred selection:text-white">
@@ -508,7 +545,7 @@
                         <div class="flex-1 flex flex-col justify-center divide-y divide-white/[0.05]">
                             <!-- Stat 1 -->
                             <div class="flex items-center gap-4 py-5">
-                                <span class="font-heading text-5xl md:text-6xl text-white leading-none shrink-0 w-[90px] md:w-[110px] text-right">200+</span>
+                                <span class="bento-stat-num font-heading text-5xl md:text-6xl text-white leading-none shrink-0 w-[90px] md:w-[110px] text-right" data-count-to="200" data-count-suffix="+">200+</span>
                                 <div class="w-px h-8 bg-gray-700 shrink-0"></div>
                                 <p class="text-gray-300 text-sm font-semibold leading-snug">
                                     <span class="en-text">New B2B Accounts Acquired</span>
@@ -517,7 +554,7 @@
                             </div>
                             <!-- Stat 2 -->
                             <div class="flex items-center gap-4 py-5">
-                                <span class="font-heading text-5xl md:text-6xl text-netred leading-none shrink-0 w-[90px] md:w-[110px] text-right">+36%</span>
+                                <span class="bento-stat-num font-heading text-5xl md:text-6xl text-netred leading-none shrink-0 w-[90px] md:w-[110px] text-right" data-count-to="36" data-count-prefix="+" data-count-suffix="%">+36%</span>
                                 <div class="w-px h-8 bg-netred/40 shrink-0"></div>
                                 <p class="text-gray-300 text-sm font-semibold leading-snug">
                                     <span class="en-text">Net Profit Growth in 3 Months</span>
@@ -560,7 +597,7 @@
                     <div class="mt-auto">
                         <div class="flex items-center gap-2 mb-1">
                             <i class="fas fa-arrow-down text-green-500 text-xl"></i>
-                            <h3 class="text-4xl md:text-5xl lg:text-6xl font-heading text-white">49<span class="text-2xl md:text-3xl lg:text-4xl">%</span></h3>
+                            <h3 class="text-4xl md:text-5xl lg:text-6xl font-heading text-white"><span class="bento-stat-num" data-count-to="49">49</span><span class="text-2xl md:text-3xl lg:text-4xl">%</span></h3>
                         </div>
                         <p class="text-gray-300 font-bold text-sm md:text-base mb-1">
                             <span class="en-text">Excess Stock Loss</span>
@@ -1788,9 +1825,9 @@
                 targets.push(revealSetup(el, 80, 0, 20, null));
             });
             
-            // Bento Boxes Reveal
+            // Bento Boxes Reveal (more dramatic stagger + depth)
             document.querySelectorAll('.bento-box').forEach((el, i) => {
-                targets.push(revealSetup(el, i * 100 + 100, 0, 40, 0.96));
+                targets.push(revealSetup(el, i * 120 + 60, 0, 55, 0.94));
             });
 
             // Journey accordion cards (stagger from bottom)
@@ -1823,6 +1860,52 @@
             }, { threshold: 0.07, rootMargin: '0px 0px -25px 0px' });
 
             targets.forEach(({ el }) => obs.observe(el));
+
+            // 12. Bento mouse-tracking glow
+            document.querySelectorAll('.bento-box').forEach(box => {
+                const glow = document.createElement('div');
+                glow.className = 'bento-glow';
+                box.insertBefore(glow, box.firstChild);
+                let raf;
+                box.addEventListener('mousemove', e => {
+                    cancelAnimationFrame(raf);
+                    raf = requestAnimationFrame(() => {
+                        const r = box.getBoundingClientRect();
+                        box.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+                        box.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+                    });
+                });
+            });
+
+            // 13. Bento counter animation (count up on scroll-reveal)
+            function countUp(el, target, prefix, suffix, duration) {
+                const ease = t => 1 - Math.pow(1 - t, 3);
+                const start = performance.now();
+                el.classList.add('pop');
+                (function tick(now) {
+                    const pct = Math.min((now - start) / duration, 1);
+                    el.textContent = prefix + Math.round(ease(pct) * target) + suffix;
+                    if (pct < 1) requestAnimationFrame(tick);
+                })(start);
+            }
+            let countersStarted = false;
+            const bentoSec = document.getElementById('bento-summary');
+            if (bentoSec) {
+                new IntersectionObserver((entries, ob) => {
+                    if (entries[0].isIntersecting && !countersStarted) {
+                        countersStarted = true; ob.disconnect();
+                        document.querySelectorAll('[data-count-to]').forEach((el, i) => {
+                            setTimeout(() => countUp(
+                                el,
+                                +el.dataset.countTo,
+                                el.dataset.countPrefix || '',
+                                el.dataset.countSuffix || '',
+                                1400
+                            ), 600 + i * 220);
+                        });
+                    }
+                }, { threshold: 0.35 }).observe(bentoSec);
+            }
 
         })();
     </script>
