@@ -63,6 +63,8 @@
         .project-card:hover .card-shine{opacity:1}
 
         .icon-zone{position:relative;display:flex;align-items:center;justify-content:center;height:200px;overflow:hidden}
+        .icon-zone img{transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .45s ease}
+        .project-card:hover .icon-zone img{transform:scale(1.07)}
         .icon-zone-bg{position:absolute;inset:0;transition:opacity .4s ease}
         .project-card:hover .icon-zone-bg{opacity:.7}
 
@@ -313,7 +315,7 @@ const PROJECTS = {
     id:'1',prev:null,next:'2',
     accentName:'blue', accent:'#3b82f6',accentRgb:'59,130,246',accentLight:'#60a5fa',
     icon:'fas fa-walking',number:'01',
-    imgUrl: 'project_chula.jpg', // 🟢 รูปภาพ 1
+    imgUrl: 'project_chula.jpg', imgPosition:'center top', // 🟢 รูปภาพ 1
     en: {
         badgeIcon:'fas fa-graduation-cap', badgeLabel:'Thesis Research',
         locIcon:'fas fa-map-marker-alt', locLabel:'Bangkok, Thailand',
@@ -441,7 +443,7 @@ const PROJECTS = {
     id:'3',prev:'2',next:null,
     accentName:'green', accent:'#22c55e',accentRgb:'34,197,94',accentLight:'#4ade80',
     icon:'fas fa-seedling',number:'03',
-    imgUrl: 'project_ysc.jpg', // 🟢 รูปภาพ 3
+    imgUrl: 'project_ysc.jpg', imgPosition:'center 20%', // 🟢 รูปภาพ 3
     en: {
         badgeIcon:'fas fa-award', badgeLabel:'1st Runner-up · YSC',
         locIcon:'fas fa-leaf', locLabel:'Sustainable Materials',
@@ -546,16 +548,21 @@ function renderCards(isFirstRender) {
         const animStyle = isFirstRender ? `opacity:0; transform:translateY(55px) scale(.95); transition: opacity .75s cubic-bezier(.16,1,.3,1) ${150 + i * 110}ms, transform .75s cubic-bezier(.16,1,.3,1) ${150 + i * 110}ms;` : '';
         const initClass = isFirstRender ? 'card-anim-init' : '';
         
+        const iconZoneInner = p.imgUrl
+            ? `<img src="${p.imgUrl}" alt="${data.title}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${p.imgPosition||'center center'};opacity:.85;transition:opacity .45s ease">
+               <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,20,.75) 0%,rgba(20,20,20,.15) 55%,transparent 100%);z-index:1"></div>`
+            : `<div class="icon-zone-bg" style="background:radial-gradient(circle at 50% 60%,rgba(${p.accentRgb},.12),transparent 70%)"></div>
+               <div class="ring ring-1" style="width:160px;height:160px;border-color:rgba(${p.accentRgb},.08)"></div>
+               <div class="ring ring-2" style="width:110px;height:110px;border-color:rgba(${p.accentRgb},.12)"></div>
+               <div class="icon-box" style="background:rgba(${p.accentRgb},.1);border:1px solid rgba(${p.accentRgb},.2)">
+                   <i class="${p.icon}" style="font-size:2.6rem;color:${p.accentLight}"></i>
+               </div>`;
+
         return `
         <div class="project-card ${initClass}" style="${animStyle}" data-accent="${p.accentName}" onclick="openProject('${p.id}')">
             <div class="card-shine"></div>
             <div class="icon-zone" style="background:linear-gradient(160deg,rgba(${p.accentRgb},.08) 0%,transparent 100%)">
-                <div class="icon-zone-bg" style="background:radial-gradient(circle at 50% 60%,rgba(${p.accentRgb},.12),transparent 70%)"></div>
-                <div class="ring ring-1" style="width:160px;height:160px;border-color:rgba(${p.accentRgb},.08)"></div>
-                <div class="ring ring-2" style="width:110px;height:110px;border-color:rgba(${p.accentRgb},.12)"></div>
-                <div class="icon-box" style="background:rgba(${p.accentRgb},.1);border:1px solid rgba(${p.accentRgb},.2)">
-                    <i class="${p.icon}" style="font-size:2.6rem;color:${p.accentLight}"></i>
-                </div>
+                ${iconZoneInner}
             </div>
             <div class="content-zone">
                 <div class="flex items-start justify-between mb-3">

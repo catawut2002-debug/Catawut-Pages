@@ -105,9 +105,10 @@
             color: white;
         }
         .bottom-nav-link.active i {
-            transform: scale(1.1);
+            transform: scale(1.15);
             color: #E50914;
         }
+        .bottom-nav-link i { color: inherit; }
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
@@ -216,7 +217,7 @@
         /* Profile Ring Pulse */
         @keyframes ringGlow {
             0%, 100% { box-shadow: 0 0 30px rgba(229,9,20,0.5), 0 0 60px rgba(229,9,20,0.2); }
-            50%       { box-shadow: 0 0 55px rgba(229,9,20,0.75), 0 0 110px rgba(229,9,20,0.3); }
+            50%        { box-shadow: 0 0 55px rgba(229,9,20,0.75), 0 0 110px rgba(229,9,20,0.3); }
         }
         .ring-pulse { animation: ringGlow 3.5s ease-in-out infinite; }
 
@@ -253,7 +254,7 @@
         /* Contact CTA Pulse */
         @keyframes ctaPulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(229,9,20,0); }
-            50%       { box-shadow: 0 0 22px 5px rgba(229,9,20,0.18); }
+            50%        { box-shadow: 0 0 22px 5px rgba(229,9,20,0.18); }
         }
         .contact-cta { animation: ctaPulse 3s ease-in-out infinite; }
 
@@ -318,36 +319,36 @@
     </nav>
 
     <!-- Bottom Navigation (Mobile App Style) -->
-    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#141414]/95 backdrop-blur-lg border-t border-gray-800 flex justify-around items-center py-2 pb-safe shadow-[0_-10px_20px_rgba(0,0,0,0.5)]">
-        <a href="#about" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-colors w-16 pt-1 active" data-section="about">
-            <i class="fas fa-home text-xl mb-1 transition-transform"></i>
+    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#141414]/95 backdrop-blur-lg border-t border-gray-800 flex items-center py-2 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]" style="padding-bottom:max(8px,env(safe-area-inset-bottom))">
+        <a href="#about" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-all duration-200 flex-1 pt-1 active" data-section="about">
+            <i class="fas fa-home text-xl mb-1 transition-all duration-200"></i>
             <span class="text-[10px] font-medium en-text">Home</span>
             <span class="text-[10px] font-medium th-text">หน้าแรก</span>
         </a>
-        <a href="#journey" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-colors w-16 pt-1" data-section="journey">
-            <i class="fas fa-play-circle text-xl mb-1 transition-transform"></i>
+        <a href="#journey" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-all duration-200 flex-1 pt-1" data-section="journey">
+            <i class="fas fa-play-circle text-xl mb-1 transition-all duration-200"></i>
             <span class="text-[10px] font-medium en-text">Journey</span>
             <span class="text-[10px] font-medium th-text">ประวัติ</span>
         </a>
-        <a href="#skills" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-colors w-16 pt-1" data-section="skills">
-            <i class="fas fa-layer-group text-xl mb-1 transition-transform"></i>
+        <a href="#skills" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-all duration-200 flex-1 pt-1" data-section="skills">
+            <i class="fas fa-layer-group text-xl mb-1 transition-all duration-200"></i>
             <span class="text-[10px] font-medium en-text">Skills</span>
             <span class="text-[10px] font-medium th-text">ทักษะ</span>
         </a>
-        <a href="projects.html" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-colors w-16 pt-1">
-            <i class="fas fa-folder-open text-xl mb-1 transition-transform"></i>
+        <a href="projects.html" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-all duration-200 flex-1 pt-1">
+            <i class="fas fa-folder-open text-xl mb-1 transition-all duration-200"></i>
             <span class="text-[10px] font-medium en-text">Projects</span>
             <span class="text-[10px] font-medium th-text">ผลงาน</span>
         </a>
-        <a href="#contact" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-colors w-16 pt-1" data-section="contact">
-            <i class="fas fa-user-circle text-xl mb-1 transition-transform"></i>
+        <a href="#contact" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-all duration-200 flex-1 pt-1" data-section="contact">
+            <i class="fas fa-user-circle text-xl mb-1 transition-all duration-200"></i>
             <span class="text-[10px] font-medium en-text">Contact</span>
             <span class="text-[10px] font-medium th-text">ติดต่อ</span>
         </a>
     </nav>
 
-    <!-- Hero Section (kept unchanged) -->
-    <section id="about" class="relative pt-28 pb-16 md:pt-48 md:pb-32 min-h-[90vh] md:min-h-screen flex items-center scroll-mt-20">
+    <!-- Hero Section -->
+    <section id="about" class="relative pt-28 pb-16 md:pt-48 md:pb-20 min-h-[90vh] flex items-center scroll-mt-20">
         <div class="absolute inset-0 z-0 pointer-events-none">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(229,9,20,0.15)_0%,rgba(20,20,20,1)_70%)]"></div>
             <div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.9)] md:shadow-[inset_0_0_150px_rgba(0,0,0,0.9)]"></div>
@@ -365,26 +366,26 @@
                 </h1>
                 <p class="animate-fade-in-up opacity-0 delay-200 text-base md:text-xl text-gray-400 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
                     <span class="en-text">
-                        Hi, I'm <strong class="text-white">Catawut Phormrin</strong>, a professional who operates at the BRIDGING of engineering and business strategy. I’ve demonstrated my ability to deliver results by securing B2B clients and developing complex pricing structures that drive revenue. Having succeeded in global innovation challenges, I am now passionate about integrating AI and Technology into business models to create sustainable competitive advantages.
+                        Hi, I'm <strong class="text-white">Catawut Phormrin</strong>, a professional who operates at the intersection of engineering and business strategy. I’ve demonstrated my ability to deliver results by securing B2B clients and developing complex pricing structures that drive revenue. Having succeeded in global innovation challenges, I am now passionate about integrating AI and Technology into business models to create sustainable competitive advantages.
                     </span>
                     <span class="th-text">
                         สวัสดีครับ ผม <strong class="text-white">คฑาวุธ พรมรินทร์</strong> มืออาชีพที่ทำงานบนคาบเกี่ยวระหว่างวิศวกรรมและกลยุทธ์ทางธุรกิจ ผมพิสูจน์ความสามารถผ่านผลงานที่จับต้องได้ ทั้งการปิดดีลลูกค้า B2B และการพัฒนาโครงสร้างราคาที่ซับซ้อนเพื่อเพิ่มรายได้ หลังจากประสบความสำเร็จบนเวทีนวัตกรรมระดับโลก ตอนนี้ผมหลงใหลในการนำ AI และเทคโนโลยี เข้ามาผสานกับโมเดลธุรกิจเพื่อสร้างความได้เปรียบทางการแข่งขันที่ยั่งยืนครับ</span>
                 </p>
                 <div class="animate-fade-in-up opacity-0 delay-300 flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4">
-                    <a href="#journey" class="w-full sm:w-auto px-8 py-3 bg-white text-black rounded font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                    <a href="#bento-summary" class="w-full sm:w-auto px-8 py-3 bg-white text-black rounded font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
                         <i class="fas fa-play text-xs"></i>
-                        <span class="en-text">Explore Journey</span>
-                        <span class="th-text">ดูประวัติการทำงาน</span>
+                        <span class="en-text">Quick Summary</span>
+                        <span class="th-text">สรุปข้อมูลเบื้องต้น</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/catawut-phormrin-8ab40a315" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3 bg-gray-600/70 text-white rounded font-bold hover:bg-gray-600 transition-colors flex items-center justify-center gap-2">
-                        <i class="fab fa-linkedin text-xl"></i>
-                        <span class="en-text">Connect</span>
-                        <span class="th-text">ติดต่อฉัน</span>
+                    <a href="#journey" class="w-full sm:w-auto px-8 py-3 bg-gray-600/70 text-white rounded font-bold hover:bg-gray-600 transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-list-ul text-sm"></i>
+                        <span class="en-text">Full Journey</span>
+                        <span class="th-text">ประวัติฉบับเต็ม</span>
                     </a>
                 </div>
             </div>
 
-             <!-- Fake Profile Visual / Achievements -->
+             <!-- Profile Visual / Achievements -->
             <div class="w-full md:w-2/5 flex justify-center animate-fade-in-up opacity-0 delay-200 relative mt-8 md:mt-0">
                 
                 <!-- Netflix Circular Profile Frame -->
@@ -396,8 +397,6 @@
                     <!-- Bottom fade overlay -->
                     <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent z-10 opacity-60 group-hover:opacity-20 transition-opacity duration-500"></div>
                     
-                    <!-- Image with object-position adjustment (object-[center_15%]) -->
-                    <!-- ปรับเปลี่ยนค่าตัวเลขตรง center_15% ได้เลยครับ เช่น center_10% หรือ center_20% เพื่อขยับรูปขึ้นลง -->
                     <img src="S__7675976.jpg" alt="Catawut Phormrin" onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Catawut+Phormrin&background=181818&color=E5E5E5&size=512'" class="w-full h-full object-cover object-[center_15%] relative z-0 transition-transform duration-700 ease-out group-hover:scale-110">
                 </div>
 
@@ -411,22 +410,148 @@
                 <div class="absolute top-[35%] -right-6 sm:top-[40%] sm:-right-8 md:top-[40%] md:-right-8 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-netcard border border-gray-800 rounded-full flex items-center justify-center shadow-xl z-30 animate-float" style="animation-delay: -4s;">
                     <i class="fas fa-database text-[#008BB9] text-xl md:text-2xl" title="SQL"></i>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="absolute top-4 -left-2 sm:top-10 sm:-left-4 md:top-16 md:-left-12 bg-netcard border border-gray-800 rounded p-2 md:p-3 shadow-2xl flex items-center gap-2 md:gap-3 scale-90 sm:scale-100 z-20">
-                    <div class="text-green-500 font-bold text-lg md:text-xl leading-none">200+</div>
-                    <div class="text-[10px] md:text-xs text-gray-400 uppercase font-semibold leading-tight">
-                        <span class="en-text">New<br/>Accounts</span>
-                        <span class="th-text">ลูกค้า<br/>ใหม่</span>
+    <!-- Bento Grid Summary Section -->
+    <section id="bento-summary" class="pb-16 md:pb-24 relative z-20 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5">
+                
+                <!-- Box 1: Giant Impact (Commercial Engine) -->
+                <div class="bento-box md:col-span-2 md:row-span-2 bg-gradient-to-br from-[#1c1c1c] to-[#111] rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-white/5 relative overflow-hidden group flex flex-col justify-center h-full shadow-lg">
+                    <!-- Subtle Red glow -->
+                    <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-netred/20 blur-[90px] rounded-full pointer-events-none group-hover:bg-netred/35 transition-all duration-700"></div>
+                    
+                    <div class="relative z-10 w-full">
+                        <div class="text-gray-400 text-xs md:text-sm font-bold tracking-widest uppercase mb-6 md:mb-8 flex items-center gap-2">
+                            <i class="fas fa-chart-line text-netred"></i>
+                            <span class="en-text">Commercial Impact</span>
+                            <span class="th-text">ผลกระทบเชิงพาณิชย์</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-[auto_1fr] gap-x-5 md:gap-x-6 gap-y-6 md:gap-y-8 items-center mb-6 md:mb-8">
+                            <!-- Stat 1 -->
+                            <h3 class="text-6xl md:text-7xl lg:text-8xl font-heading text-white leading-none tracking-tight text-right w-[100px] sm:w-[120px] md:w-[140px]">200<span class="text-4xl md:text-5xl lg:text-6xl">+</span></h3>
+                            <div class="border-l-2 border-gray-700 pl-4 md:pl-5 py-1">
+                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight en-text block">New B2B Accounts Acquired</span>
+                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight th-text block">ลูกค้าธุรกิจ B2B ที่หาได้ใหม่</span>
+                            </div>
+                            
+                            <!-- Stat 2 -->
+                            <h3 class="text-6xl md:text-7xl lg:text-8xl font-heading text-netred leading-none tracking-tight text-right w-[100px] sm:w-[120px] md:w-[140px]">+36<span class="text-4xl md:text-5xl lg:text-6xl">%</span></h3>
+                            <div class="border-l-2 border-netred/50 pl-4 md:pl-5 py-1">
+                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight en-text block">Net Profit Growth in 3 Months</span>
+                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight th-text block">การเติบโตของกำไรสุทธิใน 3 เดือน</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-5 md:pt-6 border-t border-white/5 relative z-10">
+                            <p class="text-gray-400 text-sm md:text-base leading-relaxed text-balance text-left">
+                                <span class="en-text">Driven by shifting from product-based to <strong>solution-based selling</strong> and implementing dynamic pricing models.</span>
+                                <span class="th-text">ขับเคลื่อนผ่านการเปลี่ยนแนวทางการขายแบบ <strong>Solution-based</strong> และการใช้โมเดลปรับราคาแบบไดนามิก</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="absolute bottom-4 -right-2 sm:bottom-10 sm:-right-4 md:bottom-16 md:-right-8 bg-netcard border border-gray-800 rounded p-2 md:p-3 shadow-2xl flex items-center gap-2 md:gap-3 scale-90 sm:scale-100 z-20">
-                    <div class="text-green-500 font-bold text-lg md:text-xl leading-none">36% UP</div>
-                    <div class="text-[10px] md:text-xs text-gray-400 uppercase font-semibold leading-tight">
-                        <span class="en-text">Net<br/>Profit</span>
-                        <span class="th-text">กำไร<br/>สุทธิ</span>
+                <!-- Box 2: The Quote / Philosophy -->
+                <div class="bento-box md:col-span-2 bg-[#181818] rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-white/5 flex flex-col justify-center relative group shadow-lg hover:border-gray-600/50 transition-colors duration-500 h-full">
+                    <i class="fas fa-quote-left text-4xl text-gray-800 absolute top-6 left-6 opacity-40 transition-transform duration-500 group-hover:-translate-y-1 group-hover:text-gray-700"></i>
+                    <div class="relative z-10 pl-8 md:pl-10">
+                        <p class="text-lg md:text-xl lg:text-2xl text-white font-medium leading-relaxed mb-5 text-balance text-left">
+                            <span class="en-text">"Bridging the gap between <span class="text-netred font-bold">engineering logic</span> and <span class="text-netred font-bold">business strategy</span> to drive sustainable growth."</span>
+                            <span class="th-text">"เชื่อมโยงระหว่าง<span class="text-netred font-bold">ตรรกะทางวิศวกรรม</span>และ<span class="text-netred font-bold">กลยุทธ์ธุรกิจ</span> เพื่อขับเคลื่อนการเติบโตอย่างยั่งยืน"</span>
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-[1px] bg-netred"></div>
+                            <p class="text-gray-500 font-bold text-sm tracking-wider uppercase">Catawut Phormrin</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Box 3: Operations & Efficiency -->
+                <div class="bento-box md:col-span-1 bg-gradient-to-b from-[#181818] to-[#141414] rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-6 border border-white/5 flex flex-col justify-between group shadow-lg hover:border-green-500/30 transition-colors duration-500 h-full">
+                    <div class="text-gray-400 text-xs font-bold tracking-widest uppercase mb-3">
+                        <span class="en-text">Optimization</span>
+                        <span class="th-text">การเพิ่มประสิทธิภาพ</span>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-center gap-2 mb-1">
+                            <i class="fas fa-arrow-down text-green-500 text-xl"></i>
+                            <h3 class="text-4xl md:text-5xl lg:text-6xl font-heading text-white">49<span class="text-2xl md:text-3xl lg:text-4xl">%</span></h3>
+                        </div>
+                        <p class="text-gray-300 font-bold text-sm md:text-base mb-1">
+                            <span class="en-text">Excess Stock Loss</span>
+                            <span class="th-text">ลดการสูญเสียสต็อก</span>
+                        </p>
+                        <p class="text-gray-500 text-xs md:text-sm text-balance text-left">
+                            <span class="en-text">Via data-driven inventory models.</span>
+                            <span class="th-text">ด้วยโมเดลการสั่งสินค้าอิงข้อมูล</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 4: Awards & Innovation -->
+                <div class="bento-box md:col-span-1 bg-[#181818] rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-6 border border-white/5 flex flex-col justify-center items-center text-center group relative overflow-hidden shadow-lg hover:border-yellow-500/30 transition-colors duration-500 h-full">
+                    <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-14 h-14 rounded-full bg-yellow-500/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-medal text-2xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-base md:text-lg mb-1">
+                        <span class="en-text">Gold Prize (SIIF)</span>
+                        <span class="th-text">เหรียญทอง (SIIF)</span>
+                    </h3>
+                    <p class="text-gray-500 text-xs md:text-sm text-balance">
+                        <span class="en-text">Global Innovation Award</span>
+                        <span class="th-text">รางวัลนวัตกรรมระดับนานาชาติ</span>
+                    </p>
+                </div>
+
+                <!-- Box 5: Wide Banner - Execution & Tech (Updated to focus on Engineer in Business) -->
+                <div class="bento-box md:col-span-4 bg-[#181818] rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 group overflow-hidden relative shadow-lg hover:border-gray-600/50 transition-colors duration-500 h-full">
+                    <!-- Subtle background texture line -->
+                    <div class="absolute right-0 top-0 w-2/3 h-full bg-gradient-to-l from-white/[0.02] to-transparent pointer-events-none"></div>
+                    
+                    <div class="flex-1 relative z-10 text-center md:text-left">
+                        <div class="text-gray-400 text-xs font-bold tracking-widest uppercase mb-2 flex items-center justify-center md:justify-start gap-2">
+                            <i class="fas fa-bolt text-netred"></i>
+                            <span class="en-text">The Hybrid Advantage</span>
+                            <span class="th-text">จุดแข็งที่แตกต่าง</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl lg:text-4xl text-white font-bold mb-3 leading-tight">
+                            <span class="en-text"><span class="text-gray-300">Engineering Logic.</span> Commercial Growth.</span>
+                            <span class="th-text"><span class="text-gray-300">ตรรกะแบบวิศวกร</span> ขับเคลื่อนความสำเร็จทางธุรกิจ</span>
+                        </h3>
+                        <p class="text-gray-500 text-sm md:text-base max-w-3xl mx-auto md:mx-0 text-balance text-left">
+                            <span class="en-text">Combining structured problem-solving with business acumen to turn complex data into actionable strategies, optimize operations, and drive real revenue in competitive markets.</span>
+                            <span class="th-text">ผสานกระบวนการคิดแก้ปัญหาอย่างเป็นระบบเข้ากับมุมมองทางธุรกิจ เพื่อเปลี่ยนข้อมูลที่ซับซ้อนให้เป็นกลยุทธ์ที่ลงมือทำได้จริง เพิ่มประสิทธิภาพ และสร้างยอดขายในตลาดที่มีการแข่งขันสูง</span>
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Micro-icons -->
+                    <div class="flex items-center gap-3 sm:gap-4 bg-[#111] p-4 rounded-2xl border border-gray-800 shrink-0 relative z-10 shadow-inner mt-4 md:mt-0">
+                        <div class="flex gap-3">
+                            <i class="fas fa-file-excel text-2xl md:text-3xl text-[#217346] hover:scale-110 transition-transform cursor-help" title="Excel"></i>
+                            <i class="fas fa-database text-2xl md:text-3xl text-[#008BB9] hover:scale-110 transition-transform cursor-help" title="SQL"></i>
+                            <i class="fas fa-chart-bar text-2xl md:text-3xl text-[#F2C811] hover:scale-110 transition-transform cursor-help" title="Power BI"></i>
+                            <i class="fas fa-robot text-2xl md:text-3xl text-purple-500 hover:scale-110 transition-transform cursor-help" title="AI Tools"></i>
+                        </div>
+                        <div class="h-10 w-[1px] bg-gray-700 mx-1 sm:mx-2"></div>
+                        <div class="text-left leading-none">
+                            <span class="text-[10px] sm:text-xs font-bold text-gray-300 uppercase tracking-widest block mb-1">
+                                <span class="en-text">Tech</span>
+                                <span class="th-text">ใช้</span>
+                            </span>
+                            <span class="text-[10px] sm:text-xs font-bold text-netred uppercase tracking-widest block">
+                                <span class="en-text">Driven</span>
+                                <span class="th-text">เทคโนโลยี</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1569,6 +1694,11 @@
             });
             document.querySelectorAll('#journey p.text-gray-400, #skills p.text-gray-400, #leadership p.text-gray-400').forEach(el => {
                 targets.push(revealSetup(el, 80, 0, 20, null));
+            });
+            
+            // Bento Boxes Reveal
+            document.querySelectorAll('.bento-box').forEach((el, i) => {
+                targets.push(revealSetup(el, i * 100 + 100, 0, 40, 0.96));
             });
 
             // Journey accordion cards (stagger from bottom)
