@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font Awesome for Icons -->
+    <script>if(localStorage.getItem('siteTheme')==='light')document.documentElement.classList.add('light');</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts (Netflix-like Sans-serif & Fallback for Thai) -->
@@ -20,13 +21,13 @@
             theme: {
                 extend: {
                     colors: {
-                        netbg: '#141414',
-                        netcard: '#181818',
-                        netcardhover: '#2f2f2f',
+                        netbg: 'var(--c-bg)',
+                        netcard: 'var(--c-card)',
+                        netcardhover: 'var(--c-card-hover)',
                         netred: '#E50914',
                         netredhover: '#F40612',
-                        netgray: '#808080',
-                        nettext: '#E5E5E5'
+                        netgray: 'var(--c-muted)',
+                        nettext: 'var(--c-text)'
                     },
                     fontFamily: {
                         sans: ['Freesia', 'Inter', 'Prompt', 'sans-serif'],
@@ -56,6 +57,69 @@
         }
     </script>
     <style>
+        /* ══════════ THEME VARIABLES ══════════ */
+        :root {
+            --c-bg:#141414; --c-card:#181818; --c-card-hover:#2f2f2f;
+            --c-text:#E5E5E5; --c-muted:#808080;
+        }
+        html.light {
+            --c-bg:#f4f4f4; --c-card:#ffffff; --c-card-hover:#f0f0f0;
+            --c-text:#111111; --c-muted:#666666;
+        }
+        /* ══════════ LIGHT MODE OVERRIDES ══════════ */
+        html.light body { background-color:#f4f4f4 !important; color:#111 !important; }
+        html.light ::-webkit-scrollbar-track { background:#f0f0f0; }
+        html.light ::-webkit-scrollbar-thumb { background:#c8c8c8; }
+        html.light .glass-nav { background:linear-gradient(to bottom,rgba(244,244,244,.97),rgba(244,244,244,.82)) !important; }
+        html.light #bottom-nav { background-color:rgba(244,244,244,.97) !important; border-color:#e0e0e0 !important; }
+        html.light .bottom-nav-link { color:#999 !important; }
+        html.light .bottom-nav-link.active { color:#111 !important; }
+        html.light .text-white { color:#111 !important; }
+        html.light .text-gray-100, html.light .text-gray-200 { color:#222 !important; }
+        html.light .text-gray-300 { color:#333 !important; }
+        html.light .text-gray-400 { color:#555 !important; }
+        html.light .text-gray-500 { color:#777 !important; }
+        html.light .text-gray-600, html.light .text-gray-700, html.light .text-gray-800 { color:#888 !important; }
+        html.light .border-gray-800 { border-color:#e5e5e5 !important; }
+        html.light .border-gray-700 { border-color:#e8e8e8 !important; }
+        html.light .border-gray-600 { border-color:#d5d5d5 !important; }
+        html.light [class*="border-white\/"] { border-color:rgba(0,0,0,.07) !important; }
+        html.light .bg-\[\#181818\] { background-color:#fff !important; }
+        html.light .bg-\[\#0a0a0a\] { background-color:#ebebeb !important; }
+        html.light .bg-\[\#111\] { background-color:#f0f0f0 !important; }
+        html.light [class*="bg-black\/"] { background-color:rgba(0,0,0,.04) !important; }
+        html.light [class*="bg-white\/"] { background-color:rgba(0,0,0,.03) !important; }
+        html.light .bento-box { background:#ffffff !important; border-color:#ebebeb !important; box-shadow:0 2px 20px rgba(0,0,0,.07) !important; }
+        html.light .skill-card { background-color:#fff !important; border-color:#e5e5e5 !important; }
+        html.light .accordion-inner { background-color:#f5f5f5 !important; }
+        html.light .page-grid, html.light .hero-grid-bg, html.light .skills-bg { opacity:.12 !important; }
+        html.light #skill-modal { background:rgba(0,0,0,.45) !important; }
+        html.light #skill-modal .bg-netcard { background-color:#fff !important; }
+        html.light #skill-modal .bg-gradient-to-b { background:linear-gradient(to bottom,#e0e0e0,#f0f0f0) !important; }
+        html.light .bg-gradient-to-br.from-\[\#1c1c1c\] { background:linear-gradient(135deg,#fff,#f5f5f5) !important; }
+        html.light .from-\[\#1c1c1c\] { --tw-gradient-from:#fff !important; }
+        html.light .to-\[\#111\] { --tw-gradient-to:#f4f4f4 !important; }
+        html.light .from-\[\#181818\] { --tw-gradient-from:#fff !important; }
+        html.light .to-\[\#141414\] { --tw-gradient-to:#f5f5f5 !important; }
+        /* Hero dark overlays: near-invisible in light mode */
+        html.light #about > div:first-child { opacity:0.07 !important; }
+        /* Profile photo bottom fade: match light page bg */
+        html.light .from-\[\#141414\] { --tw-gradient-from:#f4f4f4 !important; }
+        /* Bento divide-y separators: visible on light bg */
+        html.light [class*="divide-"] > * + * { border-color:rgba(0,0,0,.1) !important; }
+        /* Hero bio text: higher contrast on light bg */
+        html.light #about .text-gray-400 { color:#2a2a2a !important; }
+        /* Bento box text: boosted contrast */
+        html.light .bento-box .text-gray-300 { color:#1a1a1a !important; }
+        html.light .bento-box .text-gray-400 { color:#2d2d2d !important; }
+        html.light .bento-box .text-gray-500 { color:#444 !important; }
+        /* Full Journey button: visible on light bg */
+        html.light [class*="bg-gray-600"] { background-color:rgba(80,80,80,.85) !important; }
+        /* Theme toggle icon swap */
+        .theme-btn .i-sun { display:none; }
+        html.light .theme-btn .i-sun { display:inline; }
+        html.light .theme-btn .i-moon { display:none; }
+
         body {
             background-color: #141414;
             color: #E5E5E5;
@@ -306,12 +370,20 @@
                         <span class="en-text font-bold">EN / TH</span>
                         <span class="th-text font-bold">TH / EN</span>
                     </button>
+                    <button onclick="toggleTheme()" class="theme-btn border border-gray-600 rounded px-2.5 py-1 text-xs text-white hover:border-white transition-colors flex items-center gap-1.5" title="Switch theme">
+                        <i class="i-moon fas fa-moon"></i>
+                        <i class="i-sun fas fa-sun text-yellow-400"></i>
+                    </button>
                 </div>
-                <div class="md:hidden flex items-center gap-4">
+                <div class="md:hidden flex items-center gap-2">
                     <button id="lang-toggle-mobile" class="border border-gray-600 rounded px-2 py-1 text-xs text-white flex items-center gap-1 bg-netbg/50">
-                        <i class="fas fa-globe text-gray-400"></i> 
+                        <i class="fas fa-globe text-gray-400"></i>
                         <span class="en-text font-bold">TH</span>
                         <span class="th-text font-bold">EN</span>
+                    </button>
+                    <button onclick="toggleTheme()" class="theme-btn border border-gray-600 rounded px-2 py-1 text-xs text-white flex items-center bg-netbg/50">
+                        <i class="i-moon fas fa-moon"></i>
+                        <i class="i-sun fas fa-sun text-yellow-400"></i>
                     </button>
                 </div>
             </div>
@@ -319,7 +391,7 @@
     </nav>
 
     <!-- Bottom Navigation (Mobile App Style) -->
-    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#141414]/95 backdrop-blur-lg border-t border-gray-800 flex items-center py-2 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]" style="padding-bottom:max(8px,env(safe-area-inset-bottom))">
+    <nav id="bottom-nav" class="md:hidden fixed bottom-0 w-full z-50 bg-[#141414]/95 backdrop-blur-lg border-t border-gray-800 flex items-center py-2 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]" style="padding-bottom:max(8px,env(safe-area-inset-bottom))">
         <a href="#about" class="bottom-nav-link flex flex-col items-center text-gray-500 transition-all duration-200 flex-1 pt-1 active" data-section="about">
             <i class="fas fa-home text-xl mb-1 transition-all duration-200"></i>
             <span class="text-[10px] font-medium en-text">Home</span>
@@ -415,42 +487,50 @@
     </section>
 
     <!-- Bento Grid Summary Section -->
-    <section id="bento-summary" class="pb-16 md:pb-24 relative z-20 scroll-mt-20">
+    <section id="bento-summary" class="pt-10 md:pt-16 pb-16 md:pb-24 relative z-20 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5">
                 
                 <!-- Box 1: Giant Impact (Commercial Engine) -->
-                <div class="bento-box md:col-span-2 md:row-span-2 bg-gradient-to-br from-[#1c1c1c] to-[#111] rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-white/5 relative overflow-hidden group flex flex-col justify-center h-full shadow-lg">
+                <div class="bento-box md:col-span-2 md:row-span-2 bg-gradient-to-br from-[#1c1c1c] to-[#111] rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-white/5 relative overflow-hidden group flex flex-col h-full shadow-lg">
                     <!-- Subtle Red glow -->
                     <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-netred/20 blur-[90px] rounded-full pointer-events-none group-hover:bg-netred/35 transition-all duration-700"></div>
-                    
-                    <div class="relative z-10 w-full">
-                        <div class="text-gray-400 text-xs md:text-sm font-bold tracking-widest uppercase mb-6 md:mb-8 flex items-center gap-2">
-                            <i class="fas fa-chart-line text-netred"></i>
-                            <span class="en-text">Commercial Impact</span>
-                            <span class="th-text">ผลกระทบเชิงพาณิชย์</span>
+
+                    <div class="relative z-10 flex flex-col h-full">
+                        <!-- Section badge -->
+                        <div class="inline-flex items-center gap-2 self-start mb-6 px-3 py-1.5 rounded-full border border-netred/20 bg-netred/[0.07]">
+                            <i class="fas fa-chart-line text-netred text-[10px]"></i>
+                            <span class="en-text text-netred text-[10px] font-bold tracking-[0.18em] uppercase">Commercial Impact</span>
+                            <span class="th-text text-netred text-[10px] font-bold tracking-[0.12em] uppercase">ผลกระทบเชิงพาณิชย์</span>
                         </div>
-                        
-                        <div class="grid grid-cols-[auto_1fr] gap-x-5 md:gap-x-6 gap-y-6 md:gap-y-8 items-center mb-6 md:mb-8">
+
+                        <!-- Stats -->
+                        <div class="flex-1 flex flex-col justify-center divide-y divide-white/[0.05]">
                             <!-- Stat 1 -->
-                            <h3 class="text-6xl md:text-7xl lg:text-8xl font-heading text-white leading-none tracking-tight text-right w-[100px] sm:w-[120px] md:w-[140px]">200<span class="text-4xl md:text-5xl lg:text-6xl">+</span></h3>
-                            <div class="border-l-2 border-gray-700 pl-4 md:pl-5 py-1">
-                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight en-text block">New B2B Accounts Acquired</span>
-                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight th-text block">ลูกค้าธุรกิจ B2B ที่หาได้ใหม่</span>
+                            <div class="flex items-center gap-4 py-5">
+                                <span class="font-heading text-5xl md:text-6xl text-white leading-none shrink-0 w-[90px] md:w-[110px] text-right">200+</span>
+                                <div class="w-px h-8 bg-gray-700 shrink-0"></div>
+                                <p class="text-gray-300 text-sm font-semibold leading-snug">
+                                    <span class="en-text">New B2B Accounts Acquired</span>
+                                    <span class="th-text">ลูกค้าธุรกิจ B2B ที่หาได้ใหม่</span>
+                                </p>
                             </div>
-                            
                             <!-- Stat 2 -->
-                            <h3 class="text-6xl md:text-7xl lg:text-8xl font-heading text-netred leading-none tracking-tight text-right w-[100px] sm:w-[120px] md:w-[140px]">+36<span class="text-4xl md:text-5xl lg:text-6xl">%</span></h3>
-                            <div class="border-l-2 border-netred/50 pl-4 md:pl-5 py-1">
-                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight en-text block">Net Profit Growth in 3 Months</span>
-                                <span class="text-gray-400 text-sm md:text-base font-medium leading-tight th-text block">การเติบโตของกำไรสุทธิใน 3 เดือน</span>
+                            <div class="flex items-center gap-4 py-5">
+                                <span class="font-heading text-5xl md:text-6xl text-netred leading-none shrink-0 w-[90px] md:w-[110px] text-right">+36%</span>
+                                <div class="w-px h-8 bg-netred/40 shrink-0"></div>
+                                <p class="text-gray-300 text-sm font-semibold leading-snug">
+                                    <span class="en-text">Net Profit Growth in 3 Months</span>
+                                    <span class="th-text">การเติบโตของกำไรสุทธิใน 3 เดือน</span>
+                                </p>
                             </div>
                         </div>
-                        
-                        <div class="pt-5 md:pt-6 border-t border-white/5 relative z-10">
-                            <p class="text-gray-400 text-sm md:text-base leading-relaxed text-balance text-left">
-                                <span class="en-text">Driven by shifting from product-based to <strong>solution-based selling</strong> and implementing dynamic pricing models.</span>
-                                <span class="th-text">ขับเคลื่อนผ่านการเปลี่ยนแนวทางการขายแบบ <strong>Solution-based</strong> และการใช้โมเดลปรับราคาแบบไดนามิก</span>
+
+                        <!-- Footer -->
+                        <div class="pt-5 mt-4 border-t border-white/[0.06]">
+                            <p class="text-gray-500 text-sm leading-relaxed">
+                                <span class="en-text">Driven by shifting from product-based to <strong class="text-gray-400">solution-based selling</strong> and implementing dynamic pricing models.</span>
+                                <span class="th-text">ขับเคลื่อนผ่านการเปลี่ยนแนวทางการขายแบบ <strong class="text-gray-400">Solution-based</strong> และการใช้โมเดลปรับราคาแบบไดนามิก</span>
                             </p>
                         </div>
                     </div>
@@ -1303,6 +1383,18 @@
     <script>
         const btnDesktop = document.getElementById('lang-toggle');
         const btnMobile = document.getElementById('lang-toggle-mobile');
+
+        // ── Theme System ──
+        function toggleTheme() {
+            const isLight = document.documentElement.classList.toggle('light');
+            localStorage.setItem('siteTheme', isLight ? 'light' : 'dark');
+        }
+        window.addEventListener('storage', e => {
+            if (e.key === 'siteTheme') {
+                if (e.newValue === 'light') document.documentElement.classList.add('light');
+                else document.documentElement.classList.remove('light');
+            }
+        });
 
         // Load saved language from localStorage (shared key with projects.html)
         let currentLang = localStorage.getItem('siteLang') || 'en';
